@@ -14,11 +14,11 @@ Project Tagfile=
 Create Tagfile=0
 Include Sub Directories=0
 [Open Files]
-Open File0=C:\Documents and Settings\davem.NEUROMANCER.000\Desktop\main.c
-Open File Pos0=759
-Open File Line0=330
-Open File Window Pos0=0,1,-1,-1,-4,-23,0,0,770,365
-Open File1=C:\projects\devkitPro\examples\gamecube\consoletest\source\main.c
+Open File0=C:\projects\devkitPro\libogc\libogc.prj
+Open File Pos0=0
+Open File Line0=0
+Open File Window Pos0=2,3,-1,-1,-4,-23,198,198,1022,651
+Open File1=
 Open File Pos1=328
 Open File Line1=1241
 Open File Window Pos1=0,1,-1,-1,-4,-23,22,22,796,391
@@ -33,7 +33,7 @@ Open File Window Pos3=0,1,-1,-1,-4,-23,22,22,924,391
 Open File4=
 Open File Pos4=3547
 Open File Line4=450
-Active File Index=2
+Active File Index=0
 Open File Window Pos4=0,1,-1,-1,-4,-23,88,88,990,457
 Open File5=C:\projects\devkitPro\libogc\libogcsys\console.c
 Open File Pos5=348
@@ -46,7 +46,7 @@ Open File Window Pos6=0,1,-1,-1,-4,-23,132,132,1034,501
 Open File7=
 Active File Display Mode=3
 [File View]
-Current Select=Open Files\
+Current Select=Project Files\
 Scroll Position=0
 [Files]
 0=Makefile

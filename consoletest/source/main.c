@@ -35,7 +35,7 @@ int main()
 	
 	PAD_Init();
 	
-	xfb = MEM_K0_TO_K1(memalign(VIDEO_PadFramebufferWidth(rmode->fbWidth)*rmode->xfbHeight*VI_DISPLAY_PIX_SZ,32));
+	xfb = MEM_K0_TO_K1(SYS_AllocateFramebuffer(rmode));
 		
 	VIDEO_Configure(rmode);
 		
