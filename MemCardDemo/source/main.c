@@ -6,8 +6,6 @@
 #include <ogcsys.h>
 #include <time.h>
 
-#include "input.h"
-
 #define DemoFileName "MemCardDemo.dat"
 
 static void *xfb = NULL;
@@ -61,7 +59,7 @@ int main() {
 	VIDEO_Flush();
 	VIDEO_WaitVSync();
 	if(rmode->viTVMode&VI_NON_INTERLACE) VIDEO_WaitVSync();
-	VIDEO_SetPreRetraceCallback(ScanPads);
+	VIDEO_SetPreRetraceCallback(PAD_ScanPads);
 	console_init(xfb,20,64,rmode->fbWidth,rmode->xfbHeight,rmode->fbWidth*2);
 
 	printf("Memory Card Demo\n\n");
@@ -70,8 +68,8 @@ int main() {
 		printf("Insert A card in slot B and press A\n");
 
 
-		while ( !(ButtonsDown(0) & PAD_BUTTON_A)) {
-			if (ButtonsDown(0) & PAD_BUTTON_START) PSOreload();
+		while ( !(PAD_ButtonsDown(0) & PAD_BUTTON_A)) {
+			if (PAD_ButtonsDown(0) & PAD_BUTTON_START) PSOreload();
 			VIDEO_WaitVSync();
 		}
 

@@ -3,6 +3,7 @@ Signature=UE Proj: v.1
 [Group]
 0=include
 1=source
+2=
 [Project Information]
 Filter=*.*
 Project Directory=C:\projects\devkitPro\examples\gamecube\MemCardDemo\
@@ -12,13 +13,6 @@ Project Wordfile=
 Project Tagfile=
 Create Tagfile=0
 Include Sub Directories=0
-[Files - include]
-0=C:\projects\devkitPro\examples\gamecube\MemCardDemo\include\input.h
-[Files]
-0=C:\projects\devkitPro\examples\gamecube\MemCardDemo\Makefile
-[Files - source]
-0=C:\projects\devkitPro\examples\gamecube\MemCardDemo\source\input.c
-1=C:\projects\devkitPro\examples\gamecube\MemCardDemo\source\main.c
 [Open Files]
 Open File0=
 Open File Pos0=3772
@@ -56,5 +50,9 @@ Open File Window Pos7=2,3,-1,-1,-4,-23,132,132,960,589
 Open File8=
 Active File Display Mode=-1
 [File View]
-Current Select=Project Files
+Current Select=Project Files\
 Scroll Position=0
+[Files]
+0=Makefile
+[Files - source]
+0=source\main.c
