@@ -13,8 +13,6 @@ static u8 SysArea[CARD_WORKAREA] ATTRIBUTE_ALIGN(32);
 u32 first_frame = 1;
 GXRModeObj *rmode;
 
-
-
 /*---------------------------------------------------------------------------------
 	This function is called if a card is physically removed
 ---------------------------------------------------------------------------------*/
@@ -23,8 +21,6 @@ void card_removed(s32 chn,s32 result) {
 	printf("card was removed from slot %c\n",(chn==0)?'A':'B');
 	CARD_Unmount(chn);
 }
-
-
 
 //---------------------------------------------------------------------------------
 int main() {
@@ -46,11 +42,10 @@ int main() {
 			rmode = &TVNtsc480IntDf;
 			break;
 	}
-	
-	
+
 	PAD_Init();
 	
-	xfb = MEM_K0_TO_K1(SYS_AllocateFramebuffer(VIDEO_PadFramebufferWidth(rmode->fbWidth)*rmode->xfbHeight*VI_DISPLAY_PIX_SZ));
+	xfb = MEM_K0_TO_K1(SYS_AllocateFramebuffer(rmode));
 		
 	VIDEO_Configure(rmode);
 		
@@ -63,9 +58,7 @@ int main() {
 	VIDEO_SetPreRetraceCallback(ScanKeys);
 	console_init(xfb,20,64,rmode->fbWidth,rmode->xfbHeight,rmode->fbWidth*2);
 
-	printf("AR Test code\n\n");
-	
-
+	printf("Memory Card Demo\n\n");
 
 	while (1) {
 		printf("Insert A card in slot B and press A\n");
@@ -79,14 +72,8 @@ int main() {
 
 		CARD_Init("\xffDEMO","\xff00");
 		int SlotB_error = CARD_Mount(CARD_SLOTB, SysArea, card_removed);
-		usleep(100);
-/*		SlotB_error = CARD_Mount(CARD_SLOTB, SysArea, card_removed);
-		usleep(100);
-*/
-		 //CARD_GetErrorCode(CARD_SLOTB);
 	
 		printf("slot B code %d\n",SlotB_error);
-
 
 		if (SlotB_error > 0) {
 			printf("Starting directory\n");
@@ -101,7 +88,6 @@ int main() {
 
 			printf("Finished directory\n\n");
 			
-//			printf("slot B code %d\n",CARD_GetErrorCode(CARD_SLOTB));
 			printf("writing test file ...\n");
 			
 			CARD_Unmount(CARD_SLOTB);
