@@ -77,12 +77,14 @@ int main() {
 
 		printf("Mounting card ...\n");
 
-		CARD_Init("\xffDEMO","\xff00");
+		CARD_Init("DEMO","00");
 		int SlotB_error = CARD_Mount(CARD_SLOTB, SysArea, card_removed);
 	
 		printf("slot B code %d\n",SlotB_error);
 
-		if (SlotB_error > 0) {
+		int CardError;
+		
+		if (SlotB_error >= 0) {
 
 			int SectorSize = 0;
 			CARD_GetSectorSize(CARD_SLOTB,&SectorSize);
@@ -96,7 +98,7 @@ int main() {
 			card_dir CardDir;
 			card_file CardFile;
 			
-			int CardError = CARD_FindFirst(CARD_SLOTB, &CardDir);
+			CardError = CARD_FindFirst(CARD_SLOTB, &CardDir, true);
 
 			bool found = false;
 			
@@ -110,38 +112,27 @@ int main() {
 			
 			if (found) {
 				printf("Test file contains :- \n");
-				//CardError = CARD_Open(CARD_SLOTB ,"MemCardDemo.bin",&CardFile);
-				//CARD_Read(&CardFile,CardBuffer,SectorSize,0);
-				//printf(CardBuffer);
+				CardError = CARD_Open(CARD_SLOTB ,DemoFileName,&CardFile);
+				CARD_Read(&CardFile,CardBuffer,SectorSize,0);
+				printf("%s\n",CardBuffer);
 				
-				//CARD_Close(&CardFile);
+				CARD_Close(&CardFile);
 			
+				CARD_Delete(CARD_SLOTB,DemoFileName);
 			} else {
 			
 				printf("writing test file ...\n");
-
-				CARD_Unmount(CARD_SLOTB);
-				CARD_Init("DEMO","00");
-				int SlotB_error = CARD_Mount(CARD_SLOTB, SysArea, card_removed);
-
-				printf("mount code %d\n",SlotB_error);
-
 				CardError = CARD_Create(CARD_SLOTB ,DemoFileName,SectorSize,&CardFile);
-				
-				printf("error code %d\n",CardError);
 
 				if (0 == CardError) {
 					time_t gc_time;
 					gc_time = time(NULL);
 
-					sprintf(CardBuffer," This text was written by MemCardDemo at %s\n\0",ctime(&gc_time));
+					sprintf(CardBuffer,"This text was written by MemCardDemo\nat %s\n\0",ctime(&gc_time));
 
 					CardError = CARD_Write(&CardFile,CardBuffer,SectorSize,0);
-					printf("error code %d\n",CardError);
 					CardError = CARD_Close(&CardFile);
-					printf("error code %d\n",CardError);
 					}
-
 			}
 
 			CARD_Unmount(CARD_SLOTB);

@@ -21,10 +21,10 @@ Include Sub Directories=0
 1=C:\projects\devkitPro\examples\gamecube\MemCardDemo\source\main.c
 [Open Files]
 Open File0=
-Open File Pos0=341
-Open File Line0=0
-Open File Window Pos0=2,3,-1,-1,-4,-23,88,88,912,541
-Open File1=C:\projects\devkitPro\examples\gamecube\MemCardDemo\include\input.h
+Open File Pos0=3772
+Open File Line0=3053
+Open File Window Pos0=2,3,-1,-1,-4,-23,0,0,868,369
+Open File1=
 Open File Pos1=722
 Open File Line1=0
 Open File Window Pos1=0,1,-1,-1,-4,-23,110,110,938,567
@@ -56,5 +56,5 @@ Open File Window Pos7=2,3,-1,-1,-4,-23,132,132,960,589
 Open File8=
 Active File Display Mode=-1
 [File View]
-Current Select=Project Files\source\source\main.c
+Current Select=Project Files\Makefile
 Scroll Position=0

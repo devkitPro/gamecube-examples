@@ -17,15 +17,15 @@
 TARGET		:=	MemCardDemo
 BUILD		:=	build
 SOURCES		:=	source
-INCLUDES	:=	$(BUILD) include
+INCLUDES	:=	include
 
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
 MACHDEP	= -DGEKKO -mcpu=750 -meabi -mhard-float
-CFLAGS	= -g -O2 -Wall $(MACHDEP) $(INCLUDE)
+CFLAGS	= -O2 -Wall $(MACHDEP) $(INCLUDE)
 
-LDFLAGS	=	-g $(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
+LDFLAGS	=	$(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
 
 PREFIX	:=	powerpc-gekko-
 
@@ -60,7 +60,6 @@ CFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
 CPPFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
 sFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))
 SFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.S)))
-
 #---------------------------------------------------------------------------------
 # use CXX for linking C++ projects, CC for standard C
 #---------------------------------------------------------------------------------
@@ -71,12 +70,13 @@ else
 endif
 
 export OFILES	:= $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(sFILES:.s=.o) $(SFILES:.S=.o)
+
 #---------------------------------------------------------------------------------
 # build a list of include paths
 #---------------------------------------------------------------------------------
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-					-I$(CURDIR)/$(BUILD) \
+					-I$(CURDIR)/$(BUILD)
 
 #---------------------------------------------------------------------------------
 # build a list of library paths
