@@ -44,7 +44,7 @@ GXRModeObj *rmode;
 void draw_init();
 void draw_cube(Mtx v);
 static void copy_to_xfb(u32 count);
-void MtxRotAxis(Mtx mt,Vector *axis,f32 deg);
+//void MtxRotAxis(Mtx mt,Vector *axis,f32 deg);
 
 
 int main()
@@ -215,7 +215,7 @@ void draw_cube(Mtx v)
 
 	// move the cube out in front of us and rotate it
 	guMtxIdentity(m);
-	MtxRotAxis(m, &axis, rotateby);
+	guMtxRotAxisDeg(m, &axis, rotateby);
 	guMtxTransApply(m, m, 0.0F, 0.0F, -200.0F);
 	guMtxConcat(v,m,mv);
 	// load the modelview matrix into matrix memory
@@ -249,43 +249,3 @@ static void copy_to_xfb(u32 count)
 	}
 }
 
-// the hardware rotate axis in libogc didn't seem
-// to work so i just copied the non hardware one
-void MtxRotAxis(Mtx mt,Vector *axis,f32 deg)
-{
-	f32 s,c;
-	f32 t;
-	f32 x,y,z;
-	f32 xSq,ySq,zSq;
-	f32 rad = deg * 0.01745329252f;
-
-	s = sinf(rad);
-	c = cosf(rad);
-	t = 1.0f-c;
-
-	guVecNormalize(axis);
-
-	x = axis->x;
-	y = axis->y;
-	z = axis->z;
-
-	xSq = x*x;
-	ySq = y*y;
-	zSq = z*z;
-
-    mt[0][0] = ( t * xSq )   + ( c );
-    mt[0][1] = ( t * x * y ) - ( s * z );
-    mt[0][2] = ( t * x * z ) + ( s * y );
-    mt[0][3] =    0.0f;
-
-    mt[1][0] = ( t * x * y ) + ( s * z );
-    mt[1][1] = ( t * ySq )   + ( c );
-    mt[1][2] = ( t * y * z ) - ( s * x );
-    mt[1][3] =    0.0f;
-
-    mt[2][0] = ( t * x * z ) - ( s * y );
-    mt[2][1] = ( t * y * z ) + ( s * x );
-    mt[2][2] = ( t * zSq )   + ( c );
-    mt[2][3] =    0.0f;
-
-}
