@@ -78,6 +78,10 @@ int main()
 			void (*reload)() = (void(*)())0x80001800;
 			reload();
 		}
+		if(pad[0].button &PAD_BUTTON_A) {
+
+			free ((void *)42); // crrrrrash :)
+		}
 	};
 
 }

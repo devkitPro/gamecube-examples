@@ -8,6 +8,7 @@
 #include <math.h>
 #include <gccore.h>
 
+
 #define DEFAULT_FIFO_SIZE	(256*1024)
 
 // cube vertex data
