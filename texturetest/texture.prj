@@ -16,10 +16,10 @@ Include Sub Directories=0
 Open File0=
 Active File Display Mode=-1
 [File View]
-Current Select=Project Files\Makefile
+Current Select=Project Files\
 Scroll Position=0
-[Files]
-0=Makefile
 [Files - source]
 0=source\picture.S
-1=source\texture.cpp
+1=source\texture.c
+[Files]
+0=Makefile

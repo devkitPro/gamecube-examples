@@ -7,12 +7,12 @@
 
 #define DEFAULT_FIFO_SIZE	(256*1024)
 
-struct camera
+typedef struct tagcamera
 {
 	Vector pos;
 	Vector up;
 	Vector view;
-};
+}camera;
 s16 square[] ATTRIBUTE_ALIGN(32) =
 {
 	// x y z
@@ -34,13 +34,13 @@ u8 colors[] ATTRIBUTE_ALIGN(32) =
 	  0,  20, 100, 255  // 5 blue
 };
 
-struct tex
+typedef struct textag
 {
 	u8 *data;
 	long width;
 	long height;
 	long fmt;
-};
+} tex;
 
 extern tex texture_test;
 
