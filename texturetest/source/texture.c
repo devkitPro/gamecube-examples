@@ -49,7 +49,7 @@ static float rotby=0;
 
 static void *xfb = NULL;
 static u32 do_copy = GX_FALSE;
-GXRModeObj *rmode = &TVNtsc480IntDf;
+GXRModeObj *rmode;
 GXTexObj texObj;
 camera cam = {{0.0F, 0.0F, 0.0F},
 			  {0.0F, 1.0F, 0.0F},
@@ -69,6 +69,23 @@ int main()
 	GXColor background = {0, 0, 0, 0xff};
 
 	VIDEO_Init();
+
+	switch(VIDEO_GetCurrentTvMode())
+	{
+		case VI_NTSC:
+			rmode = &TVNtsc480IntDf;
+			break;
+		case VI_PAL:
+			rmode = &TVPal528IntDf;
+			break;
+		case VI_MPAL:
+			rmode = &TVMpal480IntDf;
+			break;
+		default:
+			rmode = &TVNtsc480IntDf;
+			break;
+	}
+
 	PAD_Init();
 	xfb = memalign(VIDEO_PadFramebufferWidth(rmode->fbWidth)*rmode->xfbHeight*VI_DISPLAY_PIX_SZ,32);
 

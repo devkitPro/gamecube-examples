@@ -38,7 +38,7 @@ u8 colors[] ATTRIBUTE_ALIGN(32) =
 
 static void *xfb = NULL;
 static u32 do_copy = GX_FALSE;
-GXRModeObj *rmode = &TVNtsc480IntDf;
+GXRModeObj *rmode;
 
 void draw_init();
 void draw_cube(Mtx v);
@@ -55,6 +55,24 @@ int main()
 	// init the vi. setup frame buffer and set the retrace callback
 	// to copy the efb to xfb
 	VIDEO_Init();
+
+	switch(VIDEO_GetCurrentTvMode())
+	{
+		case VI_NTSC:
+			rmode = &TVNtsc480IntDf;
+			break;
+		case VI_PAL:
+			rmode = &TVPal528IntDf;
+			break;
+		case VI_MPAL:
+			rmode = &TVMpal480IntDf;
+			break;
+		default:
+			rmode = &TVNtsc480IntDf;
+			break;
+	}
+
+
 	PAD_Init();
 	xfb = memalign(VIDEO_PadFramebufferWidth(rmode->fbWidth)*rmode->xfbHeight*VI_DISPLAY_PIX_SZ,32);
 

@@ -7,14 +7,14 @@
 TARGET		:=	acube
 BUILD		:=	build
 SOURCES		:=	source
-INCLUDE		:=	include
+INCLUDES	:=
 
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
 
 MACHDEP = -DGEKKO -mcpu=750 -meabi -mhard-float
-CFLAGS = -O2 -Wall $(MACHDEP) $(INCLUDES)
+CFLAGS = -O2 -Wall $(MACHDEP) $(INCLUDE)
 
 #CFLAGS	:=	-O3 -Wa,-mregnames -Wall $(INCLUDE)
 #ASFLAGS	:=	-Wa,-mregnames $(INCLUDE)
@@ -40,6 +40,11 @@ export CC		:=	$(PREFIX)gcc
 export CXX		:=	$(PREFIX)g++
 export AR		:=	$(PREFIX)ar
 export OBJCOPY	:=	$(PREFIX)objcopy
+#---------------------------------------------------------------------------------
+# use CXX for linking C++ projects, CC for standard C
+#---------------------------------------------------------------------------------
+export LD	:=	$(CXX)
+#export LD	:=	$(CC)
 
 #---------------------------------------------------------------------------------
 # automatically build a list of object files for our project
@@ -48,8 +53,6 @@ CFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
 CPPFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
 sFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))
 SFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.S)))
-
-export OFILES	:= $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(sFILES:.s=.o) $(SFILES:.S=.o)
 
 #---------------------------------------------------------------------------------
 # use CXX for linking C++ projects, CC for standard C
@@ -60,14 +63,13 @@ else
 	export LD	:=	$(CXX)
 endif
 
-
+export OFILES	:= $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(sFILES:.s=.o) $(SFILES:.S=.o)
 #---------------------------------------------------------------------------------
 # build a list of include paths
 #---------------------------------------------------------------------------------
-export INCLUDES	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
+export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 					-I$(CURDIR)/$(BUILD) \
-					-I$(CURDIR)/$(INCLUDE)
 
 #---------------------------------------------------------------------------------
 # build a list of library paths
@@ -86,6 +88,15 @@ $(BUILD):
 clean:
 	@echo clean ...
 	@rm -fr $(BUILD) *.elf
+
+#---------------------------------------------------------------------------------
+run:
+	psoload $(TARGET).dol
+
+#---------------------------------------------------------------------------------
+reload:
+	psoload -r $(TARGET).dol
+
 
 #---------------------------------------------------------------------------------
 else

@@ -16,7 +16,7 @@ Include Sub Directories=0
 Open File0=
 Active File Display Mode=-1
 [File View]
-Current Select=Open Files
+Current Select=Project Files\Makefile
 Scroll Position=0
 [Files]
 0=Makefile

@@ -7,14 +7,14 @@
 TARGET		:=	triangle
 BUILD		:=	build
 SOURCES		:=	source
-INCLUDE		:=	include
+INCLUDES	:=	include
 
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
 
 MACHDEP = -DGEKKO -mcpu=750 -meabi -mhard-float
-CFLAGS = -O2 -Wall $(MACHDEP) $(INCLUDES)
+CFLAGS = -O2 -Wall $(MACHDEP) $(INCLUDE)
 
 #CFLAGS	:=	-O3 -Wa,-mregnames -Wall $(INCLUDE)
 #ASFLAGS	:=	-Wa,-mregnames $(INCLUDE)
@@ -61,10 +61,9 @@ export OFILES	:= $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(sFILES:.s=.o) $(SFILES:.S
 #---------------------------------------------------------------------------------
 # build a list of include paths
 #---------------------------------------------------------------------------------
-export INCLUDES	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
+export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-					-I$(CURDIR)/$(BUILD) \
-					-I$(CURDIR)/$(INCLUDE)
+					-I$(CURDIR)/$(BUILD)
 
 #---------------------------------------------------------------------------------
 # build a list of library paths
@@ -83,6 +82,14 @@ $(BUILD):
 clean:
 	@echo clean ...
 	@rm -fr $(BUILD) *.elf
+
+#---------------------------------------------------------------------------------
+run:
+	psoload $(TARGET).dol
+
+#---------------------------------------------------------------------------------
+reload:
+	psoload -r $(TARGET).dol
 
 #---------------------------------------------------------------------------------
 else
