@@ -1,0 +1,21 @@
+[Project ID]
+Signature=UE Proj: v.1
+[Group]
+0=include
+1=source
+[Project Information]
+Filter=*.*
+Project Directory=C:\projects\devkitPro\examples\gamecube\MemCardDemo\
+Use Relative Directory=1
+Relative to Project File=1
+Project Wordfile=
+Project Tagfile=
+Create Tagfile=0
+Include Sub Directories=0
+[Files - include]
+0=C:\projects\devkitPro\examples\gamecube\MemCardDemo\include\input.h
+[Files]
+0=C:\projects\devkitPro\examples\gamecube\MemCardDemo\Makefile
+[Files - source]
+0=C:\projects\devkitPro\examples\gamecube\MemCardDemo\source\input.c
+1=C:\projects\devkitPro\examples\gamecube\MemCardDemo\source\main.c
