@@ -23,11 +23,13 @@ INCLUDES	:=	include
 # options for code generation
 #---------------------------------------------------------------------------------
 MACHDEP	= -DGEKKO -mcpu=750 -meabi -mhard-float
-CFLAGS	= -O2 -Wall $(MACHDEP) $(INCLUDE)
+CFLAGS	= -g -O2 -Wall $(MACHDEP) $(INCLUDE)
 
-LDFLAGS	=	$(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
+LDFLAGS	=	$(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map -Wl,--cref
 
 PREFIX	:=	powerpc-gekko-
+
+#export PATH:=/c/devkitPPC_r11/bin:/bin
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing

@@ -15,14 +15,14 @@ Create Tagfile=0
 Include Sub Directories=0
 [Open Files]
 Open File0=
-Open File Pos0=3772
-Open File Line0=3053
-Open File Window Pos0=2,3,-1,-1,-4,-23,0,0,868,369
-Open File1=
-Open File Pos1=722
+Open File Pos0=4846
+Open File Line0=4035
+Open File Window Pos0=0,1,-1,-1,-4,-23,110,110,975,479
+Open File1=C:\projects\devkitPro\tools\gamecube\doltool\main.cpp
+Open File Pos1=0
 Open File Line1=0
-Open File Window Pos1=0,1,-1,-1,-4,-23,110,110,938,567
-Open File2=c:\projects\devkitPro\examples\gamecube\MemCardDemo\source\main.c
+Open File Window Pos1=2,3,-1,-1,-4,-23,132,132,1001,505
+Open File2=
 Open File Pos2=1423
 Open File Line2=100
 Open File Window Pos2=0,1,-1,-1,-4,-23,132,132,960,589
@@ -45,12 +45,12 @@ Open File Window Pos6=0,1,-1,-1,-4,-23,110,110,938,567
 Open File7=C:\projects\devkitPro\examples\gamecube\triangle\source\triangle.c
 Open File Pos7=1351
 Open File Line7=884
-Active File Index=0
+Active File Index=1
 Open File Window Pos7=2,3,-1,-1,-4,-23,132,132,960,589
 Open File8=
 Active File Display Mode=-1
 [File View]
-Current Select=Project Files\
+Current Select=Project Files\Makefile
 Scroll Position=0
 [Files]
 0=Makefile

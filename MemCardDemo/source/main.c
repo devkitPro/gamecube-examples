@@ -54,13 +54,13 @@ int main() {
 	VIDEO_Configure(rmode);
 		
 	VIDEO_SetNextFramebuffer(xfb);
-	
 	VIDEO_SetBlack(FALSE);
 	VIDEO_Flush();
 	VIDEO_WaitVSync();
 	if(rmode->viTVMode&VI_NON_INTERLACE) VIDEO_WaitVSync();
 	VIDEO_SetPreRetraceCallback(PAD_ScanPads);
 	console_init(xfb,20,64,rmode->fbWidth,rmode->xfbHeight,rmode->fbWidth*2);
+	VIDEO_SetNextFramebuffer(xfb);
 
 	printf("Memory Card Demo\n\n");
 
@@ -130,7 +130,7 @@ int main() {
 
 					CardError = CARD_Write(&CardFile,CardBuffer,SectorSize,0);
 					CardError = CARD_Close(&CardFile);
-					}
+				}
 			}
 
 			CARD_Unmount(CARD_SLOTB);
