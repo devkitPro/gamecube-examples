@@ -65,7 +65,7 @@ int	main(void)
 	VIDEO_SetBlack(FALSE);
 	VIDEO_Flush();
 
-	fifoBuffer = MEM_K0_TO_K1(memalign(FIFO_SIZE,32));
+	fifoBuffer = MEM_K0_TO_K1(memalign(32,FIFO_SIZE));
 	memset(frameBuffer,	0, FIFO_SIZE);
 
 	GX_Init(frameBuffer, FIFO_SIZE);

@@ -98,7 +98,7 @@ int main()
 	if(rmode->viTVMode&VI_NON_INTERLACE) VIDEO_WaitVSync();
 
 	void *gp_fifo = NULL;
-	gp_fifo = MEM_K0_TO_K1(memalign(DEFAULT_FIFO_SIZE,32));
+	gp_fifo = MEM_K0_TO_K1(memalign(32,DEFAULT_FIFO_SIZE));
 	memset(gp_fifo,0,DEFAULT_FIFO_SIZE);
 
 	GX_Init(gp_fifo,DEFAULT_FIFO_SIZE);
