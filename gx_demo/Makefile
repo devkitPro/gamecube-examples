@@ -5,7 +5,7 @@
 #---------------------------------------------------------------------------------
 
 #---------------------------------------------------------------------------------
-# TARGET is the name of the output, if this ends with _mb generates a multiboot image
+# TARGET is the name of the output
 # BUILD is the directory where object files & intermediate files will be placed
 # SOURCES is a list of directories containing source code
 # INCLUDES is a list of directories containing extra header files
@@ -27,11 +27,7 @@ LDFLAGS	= $(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 # path to tools - this can be deleted if you set the path in windows
 #---------------------------------------------------------------------------------
-export PATH := /c/devkitPPC_r11/bin:/bin
-#---------------------------------------------------------------------------------
-# absolute path required since this makefile uses the build directory
-# as the working directory
-#---------------------------------------------------------------------------------
+#export PATH := /c/devkitPPC_r11/bin:/bin
 
 #---------------------------------------------------------------------------------
 # the prefix on the compiler executables
@@ -63,11 +59,7 @@ export CC		:=	$(PREFIX)gcc
 export CXX		:=	$(PREFIX)g++
 export AR		:=	$(PREFIX)ar
 export OBJCOPY	:=	$(PREFIX)objcopy
-#---------------------------------------------------------------------------------
-# use CXX for linking C++ projects, CC for standard C
-#---------------------------------------------------------------------------------
-export LD	:=	$(CXX)
-#export LD	:=	$(CC)
+
 
 #---------------------------------------------------------------------------------
 # automatically build a list of object files for our project
@@ -77,8 +69,16 @@ CPPFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
 sFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))
 SFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.S)))
 
+#---------------------------------------------------------------------------------
+# use CXX for linking C++ projects, CC for standard C
+#---------------------------------------------------------------------------------
+ifeq ($(strip $(CPPFILES)),)
+	export LD	:=	$(CC)
+else
+	export LD	:=	$(CXX)
+endif
+
 export OFILES	:= $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(sFILES:.s=.o) $(SFILES:.S=.o)
-#export OFILES	:=	gx_demo.o spaceship.o texture.o incbin.o
 #---------------------------------------------------------------------------------
 # build a list of include paths
 #---------------------------------------------------------------------------------

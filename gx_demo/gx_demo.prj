@@ -14,11 +14,11 @@ Project Tagfile=
 Create Tagfile=0
 Include Sub Directories=0
 [Open Files]
-Open File0=C:\projects\gamecube\libogc\gx_demo\Makefile
+Open File0=
 Open File Pos0=0
-Open File Line0=546
-Open File Window Pos0=0,1,-1,-1,-4,-23,88,88,778,364
-Open File1=C:\projects\gamecube\libogc\gx_demo\source\incbin.S
+Open File Line0=0
+Open File Window Pos0=2,3,-1,-1,-4,-23,66,66,931,435
+Open File1=
 Open File Pos1=0
 Open File Line1=0
 Open File Window Pos1=0,1,-1,-1,-4,-23,110,110,804,390
@@ -45,10 +45,10 @@ Open File Window Pos6=0,1,-1,-1,-4,-23,132,132,826,454
 Open File7=C:\projects\gamecube\libogc\libogccvs\gc\lwip\tcp.h
 Open File Pos7=10338
 Open File Line7=13916
-Active File Index=2
+Active File Index=0
 Open File Window Pos7=0,1,-1,-1,-4,-23,0,0,694,322
 Open File8=C:\projects\gamecube\libogc\libogccvs\gc\lwip\stats.h
-Active File Display Mode=3
+Active File Display Mode=-1
 Open File Pos8=0
 Open File Line8=3403
 Open File Window Pos8=2,3,-1,-1,-4,-23,22,22,716,344
@@ -90,7 +90,7 @@ Open File Line17=1171
 Open File Window Pos17=0,1,-1,-1,-4,-23,22,22,738,269
 Open File18=
 [File View]
-Current Select=Project Files\source\incbin.S
+Current Select=Project Files\source\
 Scroll Position=0
 [Files - include]
 0=include\main.h
