@@ -9,10 +9,36 @@ static void *xfb = NULL;
 
 u32 first_frame = 1;
 GXRModeObj *rmode;
+vu16 oldstate;
+vu16 keystate;
+vu16 keydown;
+vu16 keyup;
+PADStatus pad[4];
+
+void ScanPads() {
+
+		PAD_Read(pad);
+
+		oldstate = keystate;
+		keystate = pad[0].button;
+
+		keydown = (~oldstate) & keystate;
+		keyup = oldstate & (~keystate);
+}
+
+u16 ButtonsUp() {
+	return keyup;
+}
+u16 ButtonsDown() {
+	return keydown;
+}
+
+u16 ButtonsHeld() {
+	return keystate;
+}
 
 int main()
 {
-	PADStatus pad[4];
 	
 	VIDEO_Init();
 	
@@ -34,6 +60,11 @@ int main()
 	
 	
 	PAD_Init();
+
+	oldstate = 0;
+	keystate = 0;
+	keydown = 0;
+	keyup = 0;
 	
 	xfb = MEM_K0_TO_K1(SYS_AllocateFramebuffer(rmode));
 		
@@ -47,6 +78,7 @@ int main()
 	if(rmode->viTVMode&VI_NON_INTERLACE) VIDEO_WaitVSync();
 	
 	console_init(xfb,20,64,rmode->fbWidth,rmode->xfbHeight,rmode->fbWidth*2);
+	VIDEO_SetPreRetraceCallback(ScanPads);
 
 
 
@@ -69,18 +101,17 @@ int main()
 			VIDEO_SetBlack(FALSE);
 		}
 	
-		VIDEO_Flush();
 		VIDEO_WaitVSync();
 
-		PAD_Read(pad);
 
-		if(pad[0].button&PAD_BUTTON_START) {
+		if ( ButtonsDown() || ButtonsUp())
+		{
+			printf( "%04x %04x %04x %04x %04x\n", pad[0].button, oldstate, keystate, keydown, keyup );
+		}
+
+		if(ButtonsDown()&PAD_BUTTON_START) {
 			void (*reload)() = (void(*)())0x80001800;
 			reload();
-		}
-		if(pad[0].button &PAD_BUTTON_A) {
-
-			free ((void *)42); // crrrrrash :)
 		}
 	};
 
