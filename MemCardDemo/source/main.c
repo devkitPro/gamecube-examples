@@ -50,7 +50,7 @@ int main() {
 	
 	PAD_Init();
 	
-	xfb = MEM_K0_TO_K1(memalign(VIDEO_PadFramebufferWidth(rmode->fbWidth)*rmode->xfbHeight*VI_DISPLAY_PIX_SZ,32));
+	xfb = MEM_K0_TO_K1(SYS_AllocateFramebuffer(VIDEO_PadFramebufferWidth(rmode->fbWidth)*rmode->xfbHeight*VI_DISPLAY_PIX_SZ));
 		
 	VIDEO_Configure(rmode);
 		
@@ -77,15 +77,18 @@ int main() {
 
 		printf("Mounting card ...\n");
 
-		CARD_Init("DEMO","00");
-		CARD_Mount(CARD_SLOTB, SysArea, card_removed);
-
-		int SlotB_error = CARD_GetErrorCode(CARD_SLOTB);
+		CARD_Init("\xffDEMO","\xff00");
+		int SlotB_error = CARD_Mount(CARD_SLOTB, SysArea, card_removed);
+		usleep(100);
+/*		SlotB_error = CARD_Mount(CARD_SLOTB, SysArea, card_removed);
+		usleep(100);
+*/
+		 //CARD_GetErrorCode(CARD_SLOTB);
 	
 		printf("slot B code %d\n",SlotB_error);
 
 
-		if (SlotB_error >= 0) {
+		if (SlotB_error > 0) {
 			printf("Starting directory\n");
 			card_dir CardDir;
 		
@@ -98,6 +101,7 @@ int main() {
 
 			printf("Finished directory\n\n");
 			
+//			printf("slot B code %d\n",CARD_GetErrorCode(CARD_SLOTB));
 			printf("writing test file ...\n");
 			
 			CARD_Unmount(CARD_SLOTB);

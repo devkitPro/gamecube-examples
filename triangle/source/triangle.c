@@ -57,7 +57,7 @@ int	main(void)
 	}
 
 	PAD_Init();
-	frameBuffer	= memalign(VIDEO_PadFramebufferWidth(screenMode->fbWidth)*screenMode->xfbHeight*VI_DISPLAY_PIX_SZ, 32);
+	frameBuffer	= MEM_K0_TO_K1(SYS_AllocateFramebuffer(VIDEO_PadFramebufferWidth(screenMode->fbWidth)*screenMode->xfbHeight*VI_DISPLAY_PIX_SZ));
 
 	VIDEO_Configure(screenMode);
 	VIDEO_SetNextFramebuffer(frameBuffer);
