@@ -27,7 +27,7 @@ LDFLAGS	= $(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 # path to tools - this can be deleted if you set the path in windows
 #---------------------------------------------------------------------------------
-#export PATH := /c/devkitPPC_r11/bin:/bin
+export PATH := /c/devkitPPC_r11/bin:/bin
 
 #---------------------------------------------------------------------------------
 # the prefix on the compiler executables

@@ -40,11 +40,6 @@ export CC		:=	$(PREFIX)gcc
 export CXX		:=	$(PREFIX)g++
 export AR		:=	$(PREFIX)ar
 export OBJCOPY	:=	$(PREFIX)objcopy
-#---------------------------------------------------------------------------------
-# use CXX for linking C++ projects, CC for standard C
-#---------------------------------------------------------------------------------
-export LD	:=	$(CXX)
-#export LD	:=	$(CC)
 
 #---------------------------------------------------------------------------------
 # automatically build a list of object files for our project

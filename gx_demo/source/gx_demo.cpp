@@ -158,7 +158,7 @@ static void* main_game(void *arg)
 		GX_LoadTexObj(&texture,GX_TEXMAP0);
 
 		if(PAD_ButtonsHeld(0) & PAD_BUTTON_UP) cntrl.scale += 0.025f;
-		else if(PAD_ButtonsHeld(0) & PAD_BUTTON_UP) cntrl.scale -= 0.025f;
+		else if(PAD_ButtonsHeld(0) & PAD_BUTTON_DOWN) cntrl.scale -= 0.025f;
 		CLAMP(cntrl.scale,0.1f,2.0f);
 
 
@@ -196,7 +196,7 @@ static void DrawInit(SceneCtrl *control)
 	GXColor backcol = {0x00,0x00,0x00,0xff};
 	GXRModeObj *rmode = control->rmode;
 
-	gp_fifo = MEM_K0_TO_K1(memalign(DEFAULT_FIFO_SIZE,32));
+	gp_fifo = MEM_K0_TO_K1(memalign(32,DEFAULT_FIFO_SIZE));
 	memset(gp_fifo,0,DEFAULT_FIFO_SIZE);
 
 	GX_Init(gp_fifo,DEFAULT_FIFO_SIZE);
