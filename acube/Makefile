@@ -1,4 +1,11 @@
 #---------------------------------------------------------------------------------
+# Clear the implicit built in rules
+#---------------------------------------------------------------------------------
+.SUFFIXES:
+#---------------------------------------------------------------------------------
+-include $(DEVKITPPC)/gamecube_rules
+
+#---------------------------------------------------------------------------------
 # TARGET is the name of the output
 # BUILD is the directory where object files & intermediate files will be placed
 # SOURCES is a list of directories containing source code
@@ -18,14 +25,7 @@ CFLAGS	= -O2 -Wall $(MACHDEP) $(INCLUDE)
 
 LDFLAGS	=	$(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
 
-PREFIX	:=	powerpc-gekko-
-
 LIBS	:=	-lmodplay -logc -lm
-
-#---------------------------------------------------------------------------------
-# 
-#---------------------------------------------------------------------------------
-export PATH=/c/devkitPPC_r11/bin:/bin
 
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
@@ -37,11 +37,6 @@ ifneq ($(BUILD),$(notdir $(CURDIR)))
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir))
-
-export CC		:=	$(PREFIX)gcc
-export CXX		:=	$(PREFIX)g++
-export AR		:=	$(PREFIX)ar
-export OBJCOPY	:=	$(PREFIX)objcopy
 
 #---------------------------------------------------------------------------------
 # automatically build a list of object files for our project
@@ -104,53 +99,7 @@ DEPENDS	:=	$(OFILES:.o=.d)
 # main targets
 #---------------------------------------------------------------------------------
 $(OUTPUT).dol: $(OUTPUT).elf
-	@echo output ... $(notdir $@)
-	@$(OBJCOPY)  -O binary $< $@
-
-#---------------------------------------------------------------------------------
 $(OUTPUT).elf: $(OFILES)
-	@echo linking ... $(notdir $@)
-	@$(LD)  $^ $(LDFLAGS) $(LIBPATHS) $(LIBS) -o $@
-
-#---------------------------------------------------------------------------------
-# Compile Targets for C/C++
-#---------------------------------------------------------------------------------
-
-#---------------------------------------------------------------------------------
-%.o : %.cpp
-	@echo $(notdir $<)
-	@$(CXX) -MMD $(CFLAGS) -o $@ -c $<
-
-#---------------------------------------------------------------------------------
-%.o : %.c
-	@echo $(notdir $<)
-	@$(CC) -MMD $(CFLAGS) -o $@ -c $<
-
-#---------------------------------------------------------------------------------
-%.o : %.S
-	@echo $(notdir $<)
-	@$(CC) -MMD $(CFLAGS) -D_LANGUAGE_ASSEMBLY -c $< -o $@
-
-#---------------------------------------------------------------------------------
-%.o : %.s
-	@echo $(notdir $<)
-	@$(CC) -MMD $(CFLAGS) -D_LANGUAGE_ASSEMBLY -c $< -o $@
-
-#---------------------------------------------------------------------------------
-# canned command sequence for binary data
-#---------------------------------------------------------------------------------
-define bin2o
-	cp $(<) $(*).tmp
-	$(OBJCOPY) -I binary -O elf32-powerpc -B powerpc \
-	--rename-section .data=.rodata,readonly,data,contents,alloc \
-	--redefine-sym _binary_$*_tmp_start=$*\
-	--redefine-sym _binary_$*_tmp_end=$*_end\
-	--redefine-sym _binary_$*_tmp_size=$*_size\
-	$(*).tmp $(@)
-	echo "extern const u8" $(*)"[];" > $(*).h
-	echo "extern const u32" $(*)_size[]";" >> $(*).h
-	rm $(*).tmp
-endef
 
 -include $(DEPENDS)
 

@@ -14,7 +14,7 @@ Project Tagfile=
 Create Tagfile=0
 Include Sub Directories=0
 [Open Files]
-Open File0=C:\projects\devkitPro\examples\gamecube\gx_demo\Makefile
+Open File0=
 Open File Pos0=1385
 Open File Line0=0
 Open File Window Pos0=0,1,-1,-1,-4,-23,154,154,1019,523
@@ -48,7 +48,7 @@ Open File Line7=13916
 Active File Index=4
 Open File Window Pos7=0,1,-1,-1,-4,-23,0,0,694,322
 Open File8=C:\projects\gamecube\libogc\libogccvs\gc\lwip\stats.h
-Active File Display Mode=3
+Active File Display Mode=-1
 Open File Pos8=0
 Open File Line8=3403
 Open File Window Pos8=2,3,-1,-1,-4,-23,22,22,716,344

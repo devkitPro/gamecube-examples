@@ -15,15 +15,15 @@ Include Sub Directories=0
 [Open Files]
 Open File0=
 Active File Display Mode=-1
-Open File Pos0=1383
+Open File Pos0=198
 Open File Line0=0
-Active File Index=2
-Open File Window Pos0=0,1,-1,-1,-4,-23,0,0,770,365
-Open File1=C:\emulation\GameCube\whinecube\degub.txt
-Open File Pos1=0
-Open File Line1=2906
-Open File Window Pos1=0,1,-1,-1,-4,-23,66,66,894,523
-Open File2=C:\projects\devkitPro\buildscripts\README.TXT
+Active File Index=0
+Open File Window Pos0=2,3,-1,-1,-4,-23,132,132,954,576
+Open File1=
+Open File Pos1=198
+Open File Line1=0
+Open File Window Pos1=0,1,-1,-1,-4,-23,132,132,954,576
+Open File2=
 Open File Pos2=6208
 Open File Line2=3249
 Open File Window Pos2=2,3,-1,-1,-4,-23,176,176,1004,633
@@ -37,7 +37,7 @@ Open File Line4=0
 Open File Window Pos4=2,3,-1,-1,-4,-23,88,88,990,457
 Open File5=
 [File View]
-Current Select=Project Files
+Current Select=Project Files\Makefile
 Scroll Position=0
 [Files - source]
 0=source\acube.c

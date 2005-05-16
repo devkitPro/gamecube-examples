@@ -1,10 +1,17 @@
 #---------------------------------------------------------------------------------
-# TARGET is the name of the output, if this ends with _mb generates a multiboot image
+# Clear the implicit built in rules
+#---------------------------------------------------------------------------------
+.SUFFIXES:
+#---------------------------------------------------------------------------------
+-include $(DEVKITPPC)/gamecube_rules
+
+#---------------------------------------------------------------------------------
+# TARGET is the name of the output
 # BUILD is the directory where object files & intermediate files will be placed
 # SOURCES is a list of directories containing source code
 # INCLUDES is a list of directories containing extra header files
 #---------------------------------------------------------------------------------
-TARGET		:=	console
+TARGET		:=	consoletest
 BUILD		:=	build
 SOURCES		:=	source
 INCLUDES	:=
@@ -14,16 +21,11 @@ INCLUDES	:=
 #---------------------------------------------------------------------------------
 
 MACHDEP = -DGEKKO -mcpu=750 -meabi -mhard-float
-CFLAGS = -g -O2 -Wall $(MACHDEP) $(INCLUDE)
+CFLAGS	= -O2 -Wall $(MACHDEP) $(INCLUDE)
 
-#CFLAGS	:=	-O3 -Wa,-mregnames -Wall $(INCLUDE)
-#ASFLAGS	:=	-Wa,-mregnames $(INCLUDE)
+LDFLAGS	=	$(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
 
-LDFLAGS	=	-g $(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
-
-PREFIX			:=	powerpc-gekko-
-
-LIBS	:=	-lbba -ldb -logc -lm
+LIBS	:=	-logc
 
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
@@ -35,11 +37,6 @@ ifneq ($(BUILD),$(notdir $(CURDIR)))
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir))
-
-export CC		:=	$(PREFIX)gcc
-export CXX		:=	$(PREFIX)g++
-export AR		:=	$(PREFIX)ar
-export OBJCOPY	:=	$(PREFIX)objcopy
 
 #---------------------------------------------------------------------------------
 # automatically build a list of object files for our project
@@ -64,7 +61,7 @@ export OFILES	:= $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(sFILES:.s=.o) $(SFILES:.S
 #---------------------------------------------------------------------------------
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-					-I$(CURDIR)/$(BUILD) \
+					-I$(CURDIR)/$(BUILD)
 
 #---------------------------------------------------------------------------------
 # build a list of library paths
@@ -102,53 +99,7 @@ DEPENDS	:=	$(OFILES:.o=.d)
 # main targets
 #---------------------------------------------------------------------------------
 $(OUTPUT).dol: $(OUTPUT).elf
-	@echo output ... $(notdir $@)
-	@$(OBJCOPY)  -O binary $< $@
-
-#---------------------------------------------------------------------------------
 $(OUTPUT).elf: $(OFILES)
-	@echo linking ... $(notdir $@)
-	@$(LD)  $^ $(LDFLAGS) $(LIBPATHS) $(LIBS) -o $@
-
-#---------------------------------------------------------------------------------
-# Compile Targets for C/C++
-#---------------------------------------------------------------------------------
-
-#---------------------------------------------------------------------------------
-%.o : %.cpp
-	@echo $(notdir $<)
-	@$(CXX) -MMD $(CFLAGS) -o $@ -c $<
-
-#---------------------------------------------------------------------------------
-%.o : %.c
-	@echo $(notdir $<)
-	@$(CC) -MMD $(CFLAGS) -o $@ -c $<
-
-#---------------------------------------------------------------------------------
-%.o : %.S
-	@echo $(notdir $<)
-	@$(CC) -MMD $(CFLAGS) -D_LANGUAGE_ASSEMBLY -c $< -o $@
-
-#---------------------------------------------------------------------------------
-%.o : %.s
-	@echo $(notdir $<)
-	@$(CC) -MMD $(CFLAGS) -D_LANGUAGE_ASSEMBLY -c $< -o $@
-
-#---------------------------------------------------------------------------------
-# canned command sequence for binary data
-#---------------------------------------------------------------------------------
-define bin2o
-	cp $(<) $(*).tmp
-	$(OBJCOPY) -I binary -O elf32-powerpc -B powerpc \
-	--rename-section .data=.rodata,readonly,data,contents,alloc \
-	--redefine-sym _binary_$*_tmp_start=$*\
-	--redefine-sym _binary_$*_tmp_end=$*_end\
-	--redefine-sym _binary_$*_tmp_size=$*_size\
-	$(*).tmp $(@)
-	echo "extern const u8" $(*)"[];" > $(*).h
-	echo "extern const u32" $(*)_size[]";" >> $(*).h
-	rm $(*).tmp
-endef
 
 -include $(DEPENDS)
 

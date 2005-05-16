@@ -50,7 +50,7 @@ Open File Window Pos7=2,3,-1,-1,-4,-23,132,132,960,589
 Open File8=
 Active File Display Mode=-1
 [File View]
-Current Select=Project Files\Makefile
+Current Select=Project Files
 Scroll Position=0
 [Files]
 0=Makefile
