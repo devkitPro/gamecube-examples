@@ -37,6 +37,8 @@ ifneq ($(BUILD),$(notdir $(CURDIR)))
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir))
+export PATH	:=	$(DEVKITPPC)/bin:$(PATH)
+export DEPSDIR	:=	$(CURDIR)/$(BUILD)
 
 #---------------------------------------------------------------------------------
 # automatically build a list of object files for our project

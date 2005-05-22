@@ -48,6 +48,7 @@ export OUTPUT	:=	$(CURDIR)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir))
 
+export PATH	:=	$(DEVKITPPC)/bin:$(PATH)
 export DEPSDIR	:=	$(CURDIR)/$(BUILD)
 
 #---------------------------------------------------------------------------------
