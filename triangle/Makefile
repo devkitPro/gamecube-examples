@@ -3,7 +3,10 @@
 #---------------------------------------------------------------------------------
 .SUFFIXES:
 #---------------------------------------------------------------------------------
--include $(DEVKITPPC)/gamecube_rules
+ifeq ($(strip $(DEVKITPPC)),)
+$(error "Please set DEVKITPPC in your environment. export DEVKITPPC=<path to>devkitPPC)
+endif
+include $(DEVKITPPC)/gamecube_rules
 
 #---------------------------------------------------------------------------------
 # TARGET is the name of the output
@@ -11,10 +14,10 @@
 # SOURCES is a list of directories containing source code
 # INCLUDES is a list of directories containing extra header files
 #---------------------------------------------------------------------------------
-TARGET		:=	triangle
+TARGET		:=	Triangle
 BUILD		:=	build
 SOURCES		:=	source
-INCLUDES	:=	include
+INCLUDES	:=
 
 #---------------------------------------------------------------------------------
 # options for code generation
