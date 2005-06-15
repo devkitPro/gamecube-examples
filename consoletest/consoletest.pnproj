@@ -1,0 +1,1 @@
+<Project name="consoletest"><MagicFolder excludeFolders="CVS;.svn" filter="*.c" name="source" path="source\"><File path="main.c"></File></MagicFolder></Project>
