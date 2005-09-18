@@ -6,6 +6,7 @@
 ifeq ($(strip $(DEVKITPPC)),)
 $(error "Please set DEVKITPPC in your environment. export DEVKITPPC=<path to>devkitPPC)
 endif
+
 include $(DEVKITPPC)/gamecube_rules
 
 #---------------------------------------------------------------------------------
@@ -14,10 +15,10 @@ include $(DEVKITPPC)/gamecube_rules
 # SOURCES is a list of directories containing source code
 # INCLUDES is a list of directories containing extra header files
 #---------------------------------------------------------------------------------
-TARGET		:=	acube
+TARGET		:=	$(shell basename $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
-INCLUDES	:=
+INCLUDES	:=	include
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -28,7 +29,7 @@ CFLAGS	= -O2 -Wall $(MACHDEP) $(INCLUDE)
 
 LDFLAGS	=	$(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
 
-LIBS	:=	-lmodplay -logc -lm
+LIBS	:=	-logc
 
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
