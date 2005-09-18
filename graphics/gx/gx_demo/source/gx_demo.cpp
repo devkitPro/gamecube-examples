@@ -188,6 +188,7 @@ static void* main_game(void *arg)
 			reload();
 		}
 	}
+	return NULL; // get rid of warning
 }
 
 static void DrawInit(SceneCtrl *control)

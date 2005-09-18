@@ -84,7 +84,7 @@ int main() {
 		
 		if (SlotB_error >= 0) {
 
-			int SectorSize = 0;
+			unsigned int SectorSize = 0;
 			CARD_GetSectorSize(CARD_SLOTB,&SectorSize);
 
 			printf("Sector size is %d bytes.\n\n",SectorSize);
@@ -103,7 +103,7 @@ int main() {
 			while ( CARD_ERROR_NOFILE != CardError ) {
 				printf("%s  %s  %s\n",CardDir.filename,CardDir.gamecode,CardDir.company);
 				CardError = CARD_FindNext(&CardDir);
-				if ( 0 == strcmp (DemoFileName, CardDir.filename)) found = true; 
+				if ( 0 == strcmp (DemoFileName, (char *)CardDir.filename)) found = true; 
 			};
 
 			printf("Finished directory\n\n");
@@ -126,7 +126,7 @@ int main() {
 					time_t gc_time;
 					gc_time = time(NULL);
 
-					sprintf(CardBuffer,"This text was written by MemCardDemo\nat %s\n\0",ctime(&gc_time));
+					sprintf(CardBuffer,"This text was written by MemCardDemo\nat %s\n",ctime(&gc_time));
 
 					CardError = CARD_Write(&CardFile,CardBuffer,SectorSize,0);
 					CardError = CARD_Close(&CardFile);
