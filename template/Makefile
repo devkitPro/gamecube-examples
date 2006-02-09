@@ -26,6 +26,7 @@ INCLUDES	:=	include
 
 MACHDEP = -DGEKKO -mcpu=750 -meabi -mhard-float
 CFLAGS	= -O2 -Wall $(MACHDEP) $(INCLUDE)
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
 
 LDFLAGS	=	$(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
 
