@@ -1,0 +1,1 @@
+<Project name="pageflip"><MagicFolder excludeFolders="CVS;.svn" filter="*.c" name="source" path="source\"><File path="flip.c"></File></MagicFolder><File path="Makefile"></File></Project>
