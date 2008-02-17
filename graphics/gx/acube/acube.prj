@@ -13,12 +13,12 @@ Project Tagfile=
 Create Tagfile=0
 Include Sub Directories=0
 [Open Files]
-Open File0=
-Active File Display Mode=-1
+Open File0=D:\projects\devkitPro\examples\gamecube\graphics\gx\acube\source\acube.c
+Active File Display Mode=3
 Open File Pos0=0
 Open File Line0=0
 Active File Index=0
-Open File Window Pos0=2,3,-1,-1,-4,-23,22,22,895,462
+Open File Window Pos0=2,3,-1,-1,-4,-30,0,0,1030,327
 Open File1=
 Open File Pos1=198
 Open File Line1=0
@@ -37,7 +37,7 @@ Open File Line4=0
 Open File Window Pos4=2,3,-1,-1,-4,-23,88,88,990,457
 Open File5=
 [File View]
-Current Select=Project Files
+Current Select=Project Files\source\source\acube.c
 Scroll Position=0
 [Files - source]
 0=source\acube.c
