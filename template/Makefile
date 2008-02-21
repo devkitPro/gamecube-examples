@@ -25,11 +25,10 @@ INCLUDES	:=
 # options for code generation
 #---------------------------------------------------------------------------------
 
-MACHDEP = -DGEKKO -mcpu=750 -meabi -mhard-float
-CFLAGS	= -g -O2 -mogc -Wall $(MACHDEP) $(INCLUDE)
+CFLAGS	= -g -O2 -Wall $(MACHDEP) $(INCLUDE)
 CXXFLAGS	=	$(CFLAGS)
 
-LDFLAGS	=	-g $(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map
+LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
