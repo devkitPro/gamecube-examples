@@ -48,9 +48,6 @@ int main() {
 	}
 
 	PAD_Init();
-	DVD_Init();
-	printf("About to Mount\n");
-	DVD_Mount();
 	
 	xfb = MEM_K0_TO_K1(SYS_AllocateFramebuffer(rmode));
 		
@@ -61,7 +58,6 @@ int main() {
 	VIDEO_Flush();
 	VIDEO_WaitVSync();
 	if(rmode->viTVMode&VI_NON_INTERLACE) VIDEO_WaitVSync();
-	VIDEO_SetPreRetraceCallback(PAD_ScanPads);
 	console_init(xfb,20,64,rmode->fbWidth,rmode->xfbHeight,rmode->fbWidth*2);
 	VIDEO_SetNextFramebuffer(xfb);
 
@@ -70,11 +66,12 @@ int main() {
 	while (1) {
 		printf("Insert A card in slot B and press A\n");
 
-
-		while ( !(PAD_ButtonsDown(0) & PAD_BUTTON_A)) {
+		do {
+			PAD_ScanPads();
 			if (PAD_ButtonsDown(0) & PAD_BUTTON_START) PSOreload();
 			VIDEO_WaitVSync();
-		}
+		} while ( !(PAD_ButtonsDown(0) & PAD_BUTTON_A));
+
 
 		printf("Mounting card ...\n");
 
