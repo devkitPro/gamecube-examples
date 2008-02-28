@@ -48,12 +48,12 @@ CvtRGB (u8 r1, u8 g1, u8 b1, u8 r2, u8 g2, u8 b2)
 static void
 Initialise (void) {
 
-	VIDEO_Init ();		/*** ALWAYS CALL FIRST IN ANY LIBOGC PROJECT!
+	VIDEO_Init();		/*** ALWAYS CALL FIRST IN ANY LIBOGC PROJECT!
 							Not only does it initialise the video 
 							subsystem, but also sets up the ogc os
 						***/
  
-	PAD_Init ();		/*** Initialise pads for input ***/
+	PAD_Init();			/*** Initialise pads for input ***/
  
 	/*** Try to match the current video display mode
 		using the higher resolution interlaced.
@@ -108,7 +108,6 @@ Initialise (void) {
 	VIDEO_SetNextFramebuffer (xfb[0]);
  
 	/*** Get the PAD status updated by libogc ***/
-	VIDEO_SetPostRetraceCallback (PAD_ScanPads);
 	VIDEO_SetBlack (0);
  
 	/*** Update the video for next vblank ***/
@@ -120,15 +119,14 @@ Initialise (void) {
 		VIDEO_WaitVSync ();
  
 }
- 
+
+
 /****************************************************************************
 * Main
 *
 * Create a checkerboard, and flip it
 ****************************************************************************/
-int
-main ()
-{
+int main () {
 	u32 *checkerboard;
 	u32 colour1, colour2, colswap;
 	int rows, cols;
@@ -137,6 +135,7 @@ main ()
 	int pos = 0;
 	int startx, starty;
 	int directionx, directiony;
+	PADStatus pads[4];
  
 	/*** Start libOGC ***/
 	Initialise ();
@@ -147,8 +146,7 @@ main ()
 	colour1 = CvtRGB (0x00, 0x00, 0x80, 0x00, 0x00, 0x80);
 	colour2 = CvtRGB (0x00, 0x00, 0xe0, 0x00, 0x00, 0xe0);
  
-	for (i = 0; i < height; i += 32)
-	{
+	for (i = 0; i < height; i += 32) {
 		/*** Draw a line ***/
 		colswap = colour1;
 		colour1 = colour2;
@@ -172,7 +170,7 @@ main ()
 	colour1 = CvtRGB (0xff, 0xff, 0xff, 0xff, 0xff, 0xff);
 	startx = starty = directionx = directiony = 0;
  
-	for (;;) {
+	while(1) {
 
 		/*** Flip to off screen xfb ***/
 		whichfb ^= 1;
@@ -198,30 +196,28 @@ main ()
 		else
 			starty += 2;
  
-    if (startx >= 576)
-		directionx = 1;
+		if (startx >= 576) directionx = 1;
  
-    if (starty >= (vmode->xfbHeight - 64))
-		directiony = 1;
+		if (starty >= (vmode->xfbHeight - 64)) directiony = 1;
  
-    if (startx < 0) {
-		startx = 0;
-		directionx = 0;
-	}
+		if (startx < 0) {
+			startx = 0;
+			directionx = 0;
+		}
  
-	if (starty < 0) {
-		starty = 0;
-		directiony = 0;
-	}
+		if (starty < 0) {
+			starty = 0;
+			directiony = 0;
+		}
  
-	v = (starty * 320) + (startx >> 1);
+		v = (starty * 320) + (startx >> 1);
 
-	for (rows = 0; rows < 64; rows++) {
-		for (cols = 0; cols < 32; cols++)
-			xfb[whichfb][v + cols] = colour1;
+		for (rows = 0; rows < 64; rows++) {
+			for (cols = 0; cols < 32; cols++)
+				xfb[whichfb][v + cols] = colour1;
  
-		v += 320;
-	}
+			v += 320;
+		}
  
 		/*** Set this as next frame to display ***/
 		VIDEO_SetNextFramebuffer (xfb[whichfb]);
@@ -231,8 +227,15 @@ main ()
 		/*** Move the checkerboard along ***/
 		pos += 353;
 
-		if (pos == ((352 * 64) + 64))
-			pos = 0;
+		if (pos == ((352 * 64) + 64)) pos = 0;
+
+		PAD_ScanPads(0);
+		PAD_Read(pads);
+		if (pads[0].button & PAD_BUTTON_START) {
+			void (*reload)() = (void(*)())0x80001800;
+			reload();
+		}
+
 	}
 
 	return 0;
