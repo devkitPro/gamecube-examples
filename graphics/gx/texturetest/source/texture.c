@@ -7,8 +7,7 @@
 
 #define DEFAULT_FIFO_SIZE	(256*1024)
 
-typedef struct tagcamera
-{
+typedef struct tagcamera {
 	Vector pos;
 	Vector up;
 	Vector view;
@@ -23,19 +22,17 @@ s16 square[] ATTRIBUTE_ALIGN(32) =
 };
 
 // color data
-u8 colors[] ATTRIBUTE_ALIGN(32) =
-{
+u8 colors[] ATTRIBUTE_ALIGN(32) = {
 	// r, g, b, a
-	0,  255, 0, 0, // 0 purple
+	0,   255,   0,   0,	// 0 purple
 	240,   0,   0, 255,	// 1 red
 	255, 180,   0, 255,	// 2 orange
-	255, 255,   0, 255, // 3 yellow
-	 10, 120,  40, 255, // 4 green
-	  0,  20, 100, 255  // 5 blue
+	255, 255,   0, 255,	// 3 yellow
+	 10, 120,  40, 255,	// 4 green
+	  0,  20, 100, 255	// 5 blue
 };
 
-typedef struct textag
-{
+typedef struct textag {
 	u8 *data;
 	long width;
 	long height;
@@ -62,10 +59,8 @@ static void copy_to_xfb(u32 count);
 void movecamera(float speed);
 
 
-int main()
-{
+int main() {
 	Mtx v,p; // view and perspective matrices
-	PADStatus pad[4];
 	GXColor background = {0, 0, 0, 0xff};
 
 	VIDEO_Init();
@@ -147,11 +142,14 @@ int main()
 		do_copy = GX_TRUE;
 		VIDEO_WaitVSync();
 
-		if(pad[0].stickY > 18 || pad[0].stickY < -18)
-			movecamera((float)pad[0].stickY/-18);
+		PAD_ScanPads();
 
-		PAD_Read(pad);
-		if(pad[0].button&PAD_BUTTON_START) {
+		int stickY = PAD_StickY(0);
+		
+		if( stickY > 18 || stickY < -18)
+			movecamera((float) stickY/-18);
+
+		if(PAD_ButtonsDown(0) & PAD_BUTTON_START) {
 			void (*reload)() = (void(*)())0x80001800;
 			reload();
 		}
@@ -160,8 +158,7 @@ int main()
 }
 
 
-void draw_init()
-{
+void draw_init() {
 	GX_ClearVtxDesc();
 	GX_SetVtxDesc(GX_VA_POS, GX_INDEX8);
 	GX_SetVtxDesc(GX_VA_CLR0, GX_INDEX8);
@@ -188,8 +185,7 @@ void draw_vert(u8 pos, u8 c, f32 s, f32 t)
 	GX_TexCoord2f32(s, t);
 }
 
-void draw_square(Mtx v)
-{
+void draw_square(Mtx v) {
 	Mtx m; // model matrix.
 	Mtx mv; // modelview matrix.
 	Vector axis = {0,0,1};
@@ -211,8 +207,7 @@ void draw_square(Mtx v)
 }
 
 // copy efb to xfb when ready
-static void copy_to_xfb(u32 count)
-{
+static void copy_to_xfb(u32 count) {
 	if(do_copy==GX_TRUE) {
 		GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
 		GX_SetColorUpdate(GX_TRUE);
@@ -222,8 +217,7 @@ static void copy_to_xfb(u32 count)
 	}
 }
 
-void movecamera(float speed)
-{
+void movecamera(float speed) {
 	Vector v;
 
 	v.x = cam.view.x - cam.pos.x;

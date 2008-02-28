@@ -24,7 +24,7 @@ INCLUDES	:=
 #---------------------------------------------------------------------------------
 
 MACHDEP = -DGEKKO  -mcpu=750 -meabi -msdata=default -mhard-float
-CFLAGS = -O3 -Wall $(MACHDEP) $(INCLUDE)
+CFLAGS = -save-temps -O2 -Wall -W $(MACHDEP) $(INCLUDE)
 CXXFLAGS = $(CFLAGS) -fno-rtti -fno-exceptions
 
 LDFLAGS	= $(MACHDEP) -mogc -Wl,-Map,$(notdir $@).map

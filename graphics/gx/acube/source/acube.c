@@ -150,6 +150,11 @@ int main( int argc, char **argv ){
 
 		PAD_ScanPads();
 
+		if (PAD_ButtonsDown(0) & PAD_BUTTON_START) {
+			void (*reload)() = (void(*)())0x90000020;
+			reload();
+		}
+
 		// do this before drawing
 		GX_SetViewport(0,0,rmode->fbWidth,rmode->efbHeight,0,1);
 		GX_InvVtxCache();

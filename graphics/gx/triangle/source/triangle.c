@@ -14,7 +14,7 @@
 
 GXRModeObj	*screenMode;
 static void	*frameBuffer;
-static u8	readyForCopy;
+static vu8	readyForCopy;
 #define	FIFO_SIZE (256*1024)
 
 s16	vertices[] ATTRIBUTE_ALIGN(32) = {
@@ -88,7 +88,6 @@ int	main(void)
 	Vector up =	{0.0F, 1.0F, 0.0F};
 	Vector look	= {0.0F, 0.0F, -1.0F};
 
-	guLookAt(view, &camera,	&up, &look);
 	guPerspective(projection, 60, 1.33F, 10.0F,	300.0F);
 	GX_LoadProjectionMtx(projection, GX_PERSPECTIVE);
 
@@ -106,6 +105,7 @@ int	main(void)
 
 	while (1)
 	{
+		guLookAt(view, &camera,	&up, &look);
 		GX_SetViewport(0,0,screenMode->fbWidth,screenMode->efbHeight,0,1);
 		GX_InvVtxCache();
 		GX_InvalidateTexAll();
@@ -142,11 +142,12 @@ void update_screen(	Mtx	viewMatrix )
 
 	GX_DrawDone();
 	readyForCopy = GX_TRUE;
+
 	VIDEO_WaitVSync();
 	return;
 }
 
-static void	copy_buffers(u32 count)
+static void	copy_buffers(u32 count __attribute__ ((unused)))
 {
 	if (readyForCopy==GX_TRUE) {
 		GX_SetZMode(GX_TRUE, GX_LEQUAL,	GX_TRUE);
