@@ -67,21 +67,7 @@ int main( int argc, char **argv ){
 	VIDEO_Init();
 	PAD_Init();
  
-	switch(VIDEO_GetCurrentTvMode())
-	{
-		case VI_NTSC:
-			rmode = &TVNtsc480IntDf;
-			break;
-		case VI_PAL:
-			rmode = &TVPal528IntDf;
-			break;
-		case VI_MPAL:
-			rmode = &TVMpal480IntDf;
-			break;
-		default:
-			rmode = &TVNtsc480IntDf;
-			break;
-	}
+	rmode = VIDEO_GetPreferredMode(NULL);
  
  
 	curr_fb = 0;

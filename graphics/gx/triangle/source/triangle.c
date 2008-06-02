@@ -1,7 +1,3 @@
-// you may notice a COMPLETE lack of comments in this file. Well, that's
-// because I intended for the reader to be following along with the tutorial
-// at : http://libogc.aklabs.net/index.phprefs=SettingUpGXDisplay
-
 // adapted from	the	original acube demo	by tkcne.
 
 // enjoy
@@ -40,21 +36,7 @@ int	main(void)
   
 	VIDEO_Init();
 	
-	switch(VIDEO_GetCurrentTvMode())
-	{
-		case VI_NTSC:
-			screenMode = &TVNtsc480IntDf;
-			break;
-		case VI_PAL:
-			screenMode = &TVPal528IntDf;
-			break;
-		case VI_MPAL:
-			screenMode = &TVMpal480IntDf;
-			break;
-		default:
-			screenMode = &TVNtsc480IntDf;
-			break;
-	}
+	screenMode = VIDEO_GetPreferredMode(NULL);
 
 	PAD_Init();
 	frameBuffer	= MEM_K0_TO_K1(SYS_AllocateFramebuffer(screenMode));

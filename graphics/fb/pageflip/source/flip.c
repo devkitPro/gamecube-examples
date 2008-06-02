@@ -62,24 +62,7 @@ Initialise (void) {
 		PAL display area is 640x528
 	***/
 
-	switch (VIDEO_GetCurrentTvMode ()) {
-
-	case VI_NTSC:
-		vmode = &TVNtsc480IntDf;
-		break;
- 
-	case VI_PAL:
-		vmode = &TVPal528IntDf;
-		break;
- 
-	case VI_MPAL:
-		vmode = &TVMpal480IntDf;
-		break;
- 
-	default:
-		vmode = &TVNtsc480IntDf;
-		break;
-    }
+	vmode = VIDEO_GetPreferredMode(NULL);
  
 	/*** Let libogc configure the mode ***/
 	VIDEO_Configure (vmode);
@@ -232,8 +215,7 @@ int main () {
 		PAD_ScanPads(0);
 		PAD_Read(pads);
 		if (pads[0].button & PAD_BUTTON_START) {
-			void (*reload)() = (void(*)())0x80001800;
-			reload();
+			exit(0);
 		}
 
 	}
