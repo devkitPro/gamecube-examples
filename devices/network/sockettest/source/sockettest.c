@@ -6,6 +6,7 @@
 #include <gccore.h>
 #include <network.h>
 #include <debug.h>
+#include <errno.h>
 
 static void *xfb = NULL;
 static GXRModeObj *rmode = NULL;
@@ -18,7 +19,7 @@ static	lwp_t httd_handle = (lwp_t)NULL;
 //---------------------------------------------------------------------------------
 int main(int argc, char **argv) {
 //---------------------------------------------------------------------------------
-
+	s32 ret;
 
 	char localip[16] = {0};
 	char gateway[16] = {0};
@@ -30,9 +31,8 @@ int main(int argc, char **argv) {
 	printf("Configuring network ...\n");
 
 	// Configure the network interface
-	int ret = if_config ( localip, netmask, gateway, TRUE);
-
-	if (!ret) {
+	ret = if_config ( localip, netmask, gateway, TRUE);
+	if (ret>=0) {
 		printf ("network configured, ip: %s, gw: %s, mask %s\n", localip, gateway, netmask);
 
 		LWP_CreateThread(	&httd_handle,	/* thread handle */ 
@@ -97,7 +97,7 @@ void *httpd (void *arg) {
 
 		server.sin_family = AF_INET;
 		server.sin_port = htons (80);
-		server.sin_addr.s_addr = inet_addr (arg);
+		server.sin_addr.s_addr = INADDR_ANY;
 		ret = net_bind (sock, (struct sockaddr *) &server, sizeof (server));
 		
 		if ( ret ) {
