@@ -10,7 +10,7 @@
 #include <malloc.h>
 #include <math.h>
 #include <gccore.h>
-#include <wiiuse/wpad.h>
+
  
 #define DEFAULT_FIFO_SIZE	(256*1024)
  
