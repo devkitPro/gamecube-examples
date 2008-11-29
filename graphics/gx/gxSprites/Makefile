@@ -138,9 +138,6 @@ $(OUTPUT).elf: $(OFILES)
 	@echo $(notdir $<)
 	@$(bin2o)
 
-%.tpl : %.scf
-	gxtexconv -s $< -d $(DEPSDIR)/$*.d -o $@
-
 
 -include $(DEPSDIR)/*.d
 
