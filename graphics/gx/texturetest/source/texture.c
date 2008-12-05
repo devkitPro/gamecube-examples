@@ -5,6 +5,11 @@
 #include <math.h>
 #include <gccore.h>
 
+#include <ogc/tpl.h>
+
+#include "textures_tpl.h"
+#include "textures.h"
+
 #define DEFAULT_FIFO_SIZE	(256*1024)
 
 typedef struct tagcamera {
@@ -32,14 +37,6 @@ u8 colors[] ATTRIBUTE_ALIGN(32) = {
 	  0,  20, 100, 255	// 5 blue
 };
 
-typedef struct textag {
-	u8 *data;
-	long width;
-	long height;
-	long fmt;
-} tex;
-
-extern tex texture_test;
 
 static float rotby=0;
 
@@ -48,6 +45,8 @@ static void *xfb = NULL;
 static u32 do_copy = GX_FALSE;
 GXRModeObj *rmode;
 GXTexObj texObj;
+TPLFile spriteTPL;
+
 camera cam = {{0.0F, 0.0F, 0.0F},
 			  {0.0F, 1.0F, 0.0F},
 		  	  {0.0F, 0.0F, -1.0F}};
@@ -136,8 +135,7 @@ int main() {
 			movecamera((float) stickY/-18);
 
 		if(PAD_ButtonsDown(0) & PAD_BUTTON_START) {
-			void (*reload)() = (void(*)())0x80001800;
-			reload();
+			exit(0);
 		}
 	}
 	return 0;
@@ -161,11 +159,16 @@ void draw_init() {
 	GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
 
 	GX_InvalidateTexAll();
-	GX_InitTexObj(&texObj, texture_test.data, texture_test.width, texture_test.height, texture_test.fmt, GX_CLAMP, GX_CLAMP, GX_FALSE);
+	
+	TPL_OpenTPLFromMemory(&spriteTPL, (void *)textures_tpl,textures_tpl_size);
+	TPL_GetTexture(&spriteTPL,link,&texObj);
+
+	GX_LoadTexObj(&texObj, GX_TEXMAP0);
+
+
 }
 
-void draw_vert(u8 pos, u8 c, f32 s, f32 t)
-{
+void draw_vert(u8 pos, u8 c, f32 s, f32 t) {
 	GX_Position1x8(pos);
 	GX_Color1x8(c);
 	GX_TexCoord2f32(s, t);
