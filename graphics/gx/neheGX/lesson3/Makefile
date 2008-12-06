@@ -105,7 +105,7 @@ clean:
 	@rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).dol
 #---------------------------------------------------------------------------------
 run:
-	wiiload $(OUTPUT).dol
+	$(DEVKITPRO)/emulators/gcube/gcube $(OUTPUT).dol
 
 #---------------------------------------------------------------------------------
 else
