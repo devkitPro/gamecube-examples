@@ -161,7 +161,7 @@ void draw_init() {
 	GX_InvalidateTexAll();
 	
 	TPL_OpenTPLFromMemory(&spriteTPL, (void *)textures_tpl,textures_tpl_size);
-	TPL_GetTexture(&spriteTPL,link,&texObj);
+	TPL_GetTexture(&spriteTPL,drunkentimes,&texObj);
 
 	GX_LoadTexObj(&texObj, GX_TEXMAP0);
 
