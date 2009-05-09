@@ -48,9 +48,9 @@ int	main(void)
 	VIDEO_Flush();
 
 	fifoBuffer = MEM_K0_TO_K1(memalign(32,FIFO_SIZE));
-	memset(frameBuffer,	0, FIFO_SIZE);
+	memset(fifoBuffer,	0, FIFO_SIZE);
 
-	GX_Init(frameBuffer, FIFO_SIZE);
+	GX_Init(fifoBuffer, FIFO_SIZE);
 	GX_SetCopyClear(backgroundColor, 0x00ffffff);
 	GX_SetViewport(0,0,screenMode->fbWidth,screenMode->efbHeight,0,1);
 	GX_SetDispCopyYScale((f32)screenMode->xfbHeight/(f32)screenMode->efbHeight);
