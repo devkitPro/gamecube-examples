@@ -13,4 +13,4 @@ install:
 	@for i in $(SUBDIRS); do if test -e $$i/Makefile ; then make  -C $$i install || { exit 1;} fi; done;
 
 dist: clean
-	@tar --exclude=*CVS* --exclude=._* -cvjf gamecube-examples-$(DATESTRING).tar.bz2 *
+	@tar --exclude=*CVS* --exclude=.svn -cvjf gamecube-examples-$(DATESTRING).tar.bz2 *
