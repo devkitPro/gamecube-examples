@@ -58,7 +58,7 @@ int main(int argc,char **argv)
 	Mtx44 perspective;
 	void *gpfifo = NULL;
 	GXColor background = {0, 0, 0, 0xff};
-	Vector cam = {0.0F, 0.0F, 0.0F},
+	guVector cam = {0.0F, 0.0F, 0.0F},
 			up = {0.0F, 1.0F, 0.0F},
 		  look = {0.0F, 0.0F, -1.0F};
 	TPLFile starTPL;
@@ -162,8 +162,8 @@ int main(int argc,char **argv)
 		stars[i].b = rand()%256;			// Give star[loop] A Random Blue Intensity
 	}
 
-	Vector starAxis1 = {0,1,0};
-	Vector starAxis2 = {0,0,1};
+	guVector starAxis1 = {0,1,0};
+	guVector starAxis2 = {0,0,1};
 	while(1) {
 
 		GX_SetTevOp(GX_TEVSTAGE0,GX_MODULATE);

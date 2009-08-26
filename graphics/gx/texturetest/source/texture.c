@@ -13,9 +13,9 @@
 #define DEFAULT_FIFO_SIZE	(256*1024)
 
 typedef struct tagcamera {
-	Vector pos;
-	Vector up;
-	Vector view;
+	guVector pos;
+	guVector up;
+	guVector view;
 }camera;
 s16 square[] ATTRIBUTE_ALIGN(32) =
 {
@@ -177,7 +177,7 @@ void draw_vert(u8 pos, u8 c, f32 s, f32 t) {
 void draw_square(Mtx v) {
 	Mtx m; // model matrix.
 	Mtx mv; // modelview matrix.
-	Vector axis = {0,0,1};
+	guVector axis = {0,0,1};
 
 	guMtxIdentity(m);
 	guMtxRotAxisDeg(m, &axis, rotby);
@@ -207,7 +207,7 @@ static void copy_to_xfb(u32 count) {
 }
 
 void movecamera(float speed) {
-	Vector v;
+	guVector v;
 
 	v.x = cam.view.x - cam.pos.x;
 	v.y = cam.view.y - cam.pos.y;
