@@ -51,7 +51,6 @@ int main(int argc,char **argv)
 	u32 fb = 0;
 	u32 first_frame = 1;
 	f32 zoom = -15.0f;
-	f32 tilt = 90.0f;
 	GXTexObj texture;
 	Mtx view; // view and perspective matrices
 	Mtx model, modelview;
