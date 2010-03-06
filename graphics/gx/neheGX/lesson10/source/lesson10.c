@@ -6,7 +6,7 @@
 /* THINGS TO KNOW:
 	This is a terrible example and I'm a terrible person for creating it.
 	The camera code seems to have been designed in a bad manner, but it mostly works.
-
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
