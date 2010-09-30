@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <gccore.h>
-#include <asndlib.h>
+#include <aesndlib.h>
 #include <gcmodplay.h>
 
 // include generated header
@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
 	PAD_Init();
 	
 	// Initialise the audio subsystem
-	ASND_Init(NULL);
+	AESND_Init(NULL);
 
 	// Obtain the preferred video mode from the system
 	// This will correspond to the settings in the Wii menu
