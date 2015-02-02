@@ -94,10 +94,23 @@ export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib) \
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
 .PHONY: $(BUILD) clean
 
+ifeq (,$(wildcard $(DEVKITPRO)/portlibs/ppc/include/tremor/ivorbiscodec.h))
+
+$(BUILD):
+	@echo
+	@echo "*------------------------------------------------------------------------------------------*"
+	@echo "Please install libtremor from https://sourceforge.net/projects/devkitpro/files/portlibs/ppc/"
+	@echo "*------------------------------------------------------------------------------------------*"
+	@echo
+
+else
+
 #---------------------------------------------------------------------------------
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
 	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+
+endif
 
 #---------------------------------------------------------------------------------
 clean:
