@@ -92,7 +92,7 @@ int main( int argc, char **argv ){
 
 	u32 xfbHeight;
 
-	Mtx	view,mr,mv;
+	Mtx	view,mv;
 	Mtx44 perspective;
 
 	u32	fb = 0; 	// initial framebuffer index

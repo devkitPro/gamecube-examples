@@ -83,7 +83,6 @@ static void Initialise () {
 int main () {
 //--------------------------------------------------------------------------
 	int ret = 0;
-	int mounted = 0;
 	int *p;
 	int j, i;
  
@@ -94,7 +93,7 @@ int main () {
 	printf ("Mounting Disc\n");
  
 	// This will mount pretty much any disc, original or ISO
-	mounted = DVD_Mount ();
+	DVD_Mount ();
 	printf ("OK\n");
  
 	// Read Sector 0
