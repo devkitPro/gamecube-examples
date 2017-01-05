@@ -142,13 +142,22 @@ int main( int argc, char **argv ){
 			sprites[i].dy = -sprites[i].dy;
 	}
 
+	GX_SetViewport(0,0,rmode->fbWidth,rmode->efbHeight,0,1);
+	guMtxIdentity(GXmodelView2D);
+	guMtxTransApply (GXmodelView2D, GXmodelView2D, 0.0F, 0.0F, -5.0F);
+	GX_LoadPosMtxImm(GXmodelView2D,GX_PNMTX0);
+
+	GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
+	GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
+	GX_SetAlphaUpdate(GX_TRUE);
+	GX_SetColorUpdate(GX_TRUE);
+
 	while(1) {
 
 		PAD_ScanPads();
 
 		if (PAD_ButtonsDown(0) & PAD_BUTTON_START) exit(0);
 
-		GX_SetViewport(0,0,rmode->fbWidth,rmode->efbHeight,0,1);
 		GX_InvVtxCache();
 		GX_InvalidateTexAll();
 
@@ -156,9 +165,6 @@ int main( int argc, char **argv ){
 		GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
 		GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 
-		guMtxIdentity(GXmodelView2D);
-		guMtxTransApply (GXmodelView2D, GXmodelView2D, 0.0F, 0.0F, -5.0F);
-		GX_LoadPosMtxImm(GXmodelView2D,GX_PNMTX0);
 
 		for(i = 0; i < NUM_SPRITES; i++) {
 			sprites[i].x += sprites[i].dx;
@@ -176,10 +182,6 @@ int main( int argc, char **argv ){
 
 		GX_DrawDone();
 		
-		GX_SetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
-		GX_SetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
-		GX_SetAlphaUpdate(GX_TRUE);
-		GX_SetColorUpdate(GX_TRUE);
 		GX_CopyDisp(frameBuffer[fb],GX_TRUE);
 
 		VIDEO_SetNextFramebuffer(frameBuffer[fb]);
