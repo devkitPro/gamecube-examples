@@ -212,7 +212,7 @@ int main () {
 
 		if (pos == ((352 * 64) + 64)) pos = 0;
 
-		PAD_ScanPads(0);
+		PAD_ScanPads();
 		PAD_Read(pads);
 		if (pads[0].button & PAD_BUTTON_START) {
 			exit(0);

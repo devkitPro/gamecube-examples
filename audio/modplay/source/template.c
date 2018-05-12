@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
 	PAD_Init();
 
 	// Initialise the audio subsystem
-	AESND_Init(NULL);
+	AESND_Init();
 
 	// Obtain the preferred video mode from the system
 	// This will correspond to the settings in the Wii menu
