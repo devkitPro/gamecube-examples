@@ -25,7 +25,7 @@ void dirlist(char* path) {
 			if(pent == NULL) break;
 			
 			if(strcmp(".", pent->d_name) != 0 && strcmp("..", pent->d_name) != 0) {
-				char dnbuf[260];
+				char dnbuf[PATH_MAX];
 				sprintf(dnbuf, "%s/%s", path, pent->d_name);
 				
 				struct stat statbuf;
