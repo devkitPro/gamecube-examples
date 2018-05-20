@@ -100,13 +100,12 @@ $(BUILD):
 	@echo
 	@echo "*------------------------------------------------------------------------------------------*"
 	@echo
-	@echo "Please install libvorbisidec using (dkp-)pacman -S "
+	@echo "Please install libvorbisidec using (dkp-)pacman -S ppc-libvorbisidec"
 	@echo
 	@echo "See https://devkitpro.org/viewtopic.php?f=13&t=8702 for details"
 	@echo
 	@echo "*------------------------------------------------------------------------------------------*"
 	@echo
-
 else
 
 #---------------------------------------------------------------------------------
