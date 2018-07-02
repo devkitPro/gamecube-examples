@@ -23,14 +23,14 @@ void dirlist(char* path) {
 		while(true) {
 			struct dirent* pent = readdir(pdir);
 			if(pent == NULL) break;
-			
+
 			if(strcmp(".", pent->d_name) != 0 && strcmp("..", pent->d_name) != 0) {
 				char dnbuf[PATH_MAX];
 				sprintf(dnbuf, "%s/%s", path, pent->d_name);
-				
+
 				struct stat statbuf;
 				stat(dnbuf, &statbuf);
-				
+
 				if(S_ISDIR(statbuf.st_mode)) {
 					printf("%s <DIR>\n", dnbuf);
 					dirlist(dnbuf);
@@ -39,7 +39,7 @@ void dirlist(char* path) {
 				}
 			}
 		}
-		
+
 		closedir(pdir);
 	} else {
 		printf("opendir() failure.\n");
@@ -49,26 +49,26 @@ void dirlist(char* path) {
 int main(int argc, char **argv) {
 	// Initialise the video system
 	VIDEO_Init();
-	
+
 	// This function initialises the attached controllers
 	PAD_Init();
-	
+
 	// Obtain the preferred video mode from the system
 	// This will correspond to the settings in the Wii menu
 	rmode = VIDEO_GetPreferredMode(NULL);
 
 	// Allocate memory for the display in the uncached region
 	xfb = MEM_K0_TO_K1(SYS_AllocateFramebuffer(rmode));
-	
+
 	// Initialise the console, required for printf
 	console_init(xfb,20,20,rmode->fbWidth,rmode->xfbHeight,rmode->fbWidth*VI_DISPLAY_PIX_SZ);
-	
+
 	// Set up the video registers with the chosen mode
 	VIDEO_Configure(rmode);
-	
+
 	// Tell the video hardware where our display memory is
 	VIDEO_SetNextFramebuffer(xfb);
-	
+
 	// Make the display visible
 	VIDEO_SetBlack(FALSE);
 
@@ -84,7 +84,7 @@ int main(int argc, char **argv) {
 	// we can use variables for this with format codes too
 	// e.g. printf ("\x1b[%d;%dH", row, column );
 	printf("\x1b[2;0H");
-	
+
 	if(fatInitDefault()) {
 		dirlist("/");
 	} else {
