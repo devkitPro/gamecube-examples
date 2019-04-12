@@ -18,22 +18,22 @@ include $(DEVKITPPC)/gamecube_rules
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
-DATA		:=	data  
+DATA		:=	data
 INCLUDES	:=
 
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
 
-CFLAGS	= -g -O2 -Wall $(MACHDEP) $(INCLUDE)
-CXXFLAGS	=	$(CFLAGS)
+CFLAGS		= -g -O2 -Wall $(MACHDEP) $(INCLUDE)
+CXXFLAGS	= $(CFLAGS)
 
-LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
+LDFLAGS		= -g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:=	-logc
+LIBS	:=	-logc -lm
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -51,7 +51,7 @@ ifneq ($(BUILD),$(notdir $(CURDIR)))
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
-					$(foreach dir,$(DATA),$(CURDIR)/$(dir))
+			$(foreach dir,$(DATA),$(CURDIR)/$(dir))
 
 export DEPSDIR	:=	$(CURDIR)/$(BUILD)
 
@@ -73,23 +73,24 @@ else
 	export LD	:=	$(CXX)
 endif
 
-export OFILES	:=	$(addsuffix .o,$(BINFILES)) \
-					$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) \
-					$(sFILES:.s=.o) $(SFILES:.S=.o)
+export OFILES_BIN	:=	$(addsuffix .o,$(BINFILES))
+export OFILES_SOURCES := $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(sFILES:.s=.o) $(SFILES:.S=.o)
+export OFILES := $(OFILES_BIN) $(OFILES_SOURCES)
+
+export HFILES := $(addsuffix .h,$(subst .,_,$(BINFILES)))
 
 #---------------------------------------------------------------------------------
 # build a list of include paths
 #---------------------------------------------------------------------------------
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
-					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-					-I$(CURDIR)/$(BUILD) \
-					-I$(LIBOGC_INC)
+			$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
+			-I$(CURDIR)/$(BUILD) \
+			-I$(LIBOGC_INC)
 
 #---------------------------------------------------------------------------------
 # build a list of library paths
 #---------------------------------------------------------------------------------
-export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib) \
-					-L$(LIBOGC_LIB)
+export LIBPATHS	:=	-L$(LIBOGC_LIB) $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
 .PHONY: $(BUILD) clean
@@ -105,11 +106,6 @@ clean:
 	@rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).dol
 
 #---------------------------------------------------------------------------------
-run:
-	$(DEVKITPRO)/emulators/gcube/gcube $(OUTPUT).dol
-
-
-#---------------------------------------------------------------------------------
 else
 
 DEPENDS	:=	$(OFILES:.o=.d)
@@ -120,10 +116,12 @@ DEPENDS	:=	$(OFILES:.o=.d)
 $(OUTPUT).dol: $(OUTPUT).elf
 $(OUTPUT).elf: $(OFILES)
 
+$(OFILES_SOURCES) : $(HFILES)
+
 #---------------------------------------------------------------------------------
 # This rule links in binary data with the .jpg extension
 #---------------------------------------------------------------------------------
-%.jpg.o	:	%.jpg
+%.jpg.o	%_jpg.h :	%.jpg
 #---------------------------------------------------------------------------------
 	@echo $(notdir $<)
 	$(bin2o)

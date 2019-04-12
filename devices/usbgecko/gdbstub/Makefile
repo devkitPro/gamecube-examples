@@ -33,7 +33,7 @@ LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:=	-ldb -logc -lm 
+LIBS	:=	-ldb -logc -lm
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
@@ -103,15 +103,6 @@ $(BUILD):
 clean:
 	@echo clean ...
 	@rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).dol
-
-#---------------------------------------------------------------------------------
-run:
-	psoload $(TARGET).dol
-
-#---------------------------------------------------------------------------------
-reload:
-	psoload -r $(TARGET).dol
-
 
 #---------------------------------------------------------------------------------
 else

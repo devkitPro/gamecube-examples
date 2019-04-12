@@ -18,7 +18,7 @@ include $(DEVKITPPC)/gamecube_rules
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
-DATA		:=	data  
+DATA		:=	data
 INCLUDES	:=
 
 #---------------------------------------------------------------------------------
@@ -103,15 +103,6 @@ $(BUILD):
 clean:
 	@echo clean ...
 	@rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).dol
-
-#---------------------------------------------------------------------------------
-run:
-	psoload $(TARGET).dol
-
-#---------------------------------------------------------------------------------
-reload:
-	psoload -r $(TARGET).dol
-
 
 #---------------------------------------------------------------------------------
 else
