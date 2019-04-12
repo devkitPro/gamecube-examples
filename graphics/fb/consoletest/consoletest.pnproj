@@ -1,1 +1,0 @@
-<Project name="consoletest"><MagicFolder excludeFolders="CVS;.svn" filter="*.c;*.cpp;*.h;*.s" name="source" path="source\"><File path="main.cpp"></File></MagicFolder><File path="Makefile"></File></Project>
