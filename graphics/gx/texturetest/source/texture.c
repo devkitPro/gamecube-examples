@@ -59,7 +59,7 @@ void movecamera(float speed);
 
 
 int main() {
-	Mtx v,p; // view and perspective matrices
+	Mtx44 v,p; // view and perspective matrices
 	GXColor background = {0, 0, 0, 0xff};
 
 	VIDEO_Init();
