@@ -1,3 +1,6 @@
+#ifndef __CONTROLLER_H__
+#define __CONTROLLER_H__
+
 #define A_POINT_COUNT 156
 #define ASTICK_POINT_COUNT 340
 #define B_POINT_COUNT 156
@@ -10868,4 +10871,5 @@ guVector z_uv[] = {
 };
 /*Z BUTTON*/
 
+#endif /*__CONTROLLER_H__*/
 

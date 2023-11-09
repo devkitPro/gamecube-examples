@@ -116,14 +116,6 @@ clean:
 	@echo clean ...
 	@rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).dol
 
-#---------------------------------------------------------------------------------
-run:$(BUILD)
-	@echo running ...
-	#dolphin-emu -e $(TARGET).dol
-	flatpak run org.DolphinEmu.dolphin-emu -d -l -b -e $(TARGET).dol
-
-#---------------------------------------------------------------------------------
-
 else
 
 DEPENDS	:=	$(OFILES:.o=.d)

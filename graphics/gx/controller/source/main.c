@@ -58,8 +58,8 @@ Mtx44 p;
 Mtx v;
 
 static GXColor lightColor[] = {
-        { 0xFF, 0xFF, 0xFF, 0xFF }, // Light color 1
-        { 0x20, 0x20, 0x20, 0xFF }, // Ambient 1
+        { 0xFF, 0xFF, 0xFF, 0xFF }, 
+        { 0x20, 0x20, 0x20, 0xFF }, 
 };
 
 
@@ -75,7 +75,6 @@ void set_light()
     GX_InitLightDistAttn(&MyLight, 20.0f, 1.0f, GX_DA_MEDIUM);
     GX_LoadLightObj(&MyLight, GX_LIGHT0);
 
-    // Turn light ON
     GX_SetNumChans(1);
     GX_SetChanCtrl(GX_COLOR0A0, GX_ENABLE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT0, GX_DF_CLAMP, GX_AF_SPOT);
     GX_SetChanAmbColor(GX_COLOR0A0,lightColor[1]);
@@ -105,9 +104,6 @@ void gcn_init()
 	xfb[0] = MEM_K0_TO_K1(SYS_AllocateFramebuffer(rmode));  
 	xfb[1] = MEM_K0_TO_K1(SYS_AllocateFramebuffer(rmode));  
 	
-	console_init(xfb[0],20,20,rmode->fbWidth,rmode->xfbHeight,rmode->fbWidth*VI_DISPLAY_PIX_SZ);
-	console_init(xfb[1],20,20,rmode->fbWidth,rmode->xfbHeight,rmode->fbWidth*VI_DISPLAY_PIX_SZ);
-	
 	VIDEO_Configure(rmode);
 	VIDEO_SetNextFramebuffer(xfb[context]);
 	VIDEO_SetBlack(FALSE);
@@ -115,7 +111,6 @@ void gcn_init()
 	VIDEO_WaitVSync(); 
 	
 	if(rmode->viTVMode & VI_NON_INTERLACE) VIDEO_WaitVSync(); 
-	console_init(xfb[context], 20, 20, rmode->fbWidth, rmode->xfbHeight, rmode->fbWidth*VI_DISPLAY_PIX_SZ); 
 	
 	GX_Init(gp_fifo, DEFAULT_FIFO_SIZE);
 	GX_SetCopyClear(bg, 0x00ffffff);
