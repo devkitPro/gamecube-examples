@@ -1,5 +1,4 @@
-#ifndef __CONTROLLER_H__
-#define __CONTROLLER_H__
+#include <gccore.h>
 
 #define A_POINT_COUNT 156
 #define ASTICK_POINT_COUNT 340
@@ -15,7 +14,7 @@
 #define Z_POINT_COUNT 90
 
 /*A BUTTON*/
-guVector a_points[] = {
+static guVector a_points[] = {
     {.x=0, .y=1, .z=5},    {.x=2, .y=0, .z=3},    {.x=3, .y=0, .z=4},
     {.x=4, .y=0, .z=5},    {.x=5, .y=6, .z=7},    {.x=5, .y=1, .z=6},
     {.x=8, .y=5, .z=7},    {.x=4, .y=5, .z=8},    {.x=9, .y=3, .z=8},
@@ -71,7 +70,7 @@ guVector a_points[] = {
 };
 
 
-guVector a_normpoints[] = {
+static guVector a_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=0, .z=4},    {.x=4, .y=0, .z=5},
     {.x=5, .y=0, .z=2},    {.x=2, .y=6, .z=7},    {.x=2, .y=1, .z=6},
     {.x=8, .y=2, .z=7},    {.x=5, .y=2, .z=8},    {.x=9, .y=4, .z=8},
@@ -127,7 +126,7 @@ guVector a_normpoints[] = {
 };
 
 
-guVector a_uvpoints[] = {
+static guVector a_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=0, .z=4},    {.x=4, .y=0, .z=5},
     {.x=5, .y=0, .z=2},    {.x=6, .y=7, .z=8},    {.x=2, .y=1, .z=9},
     {.x=10, .y=6, .z=8},    {.x=11, .y=6, .z=10},    {.x=12, .y=13, .z=10},
@@ -184,7 +183,7 @@ guVector a_uvpoints[] = {
 
 
 
-guVector a_vert[] = {
+static guVector a_vert[] = {
    {.x=9.607875, .y=0.070041, .z=11.681331},
    {.x=9.131864, .y=-2.732215, .z=11.681331},
    {.x=9.136613, .y=2.860258, .z=11.681331},
@@ -279,7 +278,7 @@ guVector a_vert[] = {
 
 
 
-guVector a_norm[] = {
+static guVector a_norm[] = {
    {.x=0.559900, .y=0.185000, .z=0.807600},
    {.x=0.527500, .y=-0.151800, .z=0.835900},
    {.x=0.952300, .y=-0.157400, .z=0.261400},
@@ -374,7 +373,7 @@ guVector a_norm[] = {
 
 
 
-guVector a_uv[] = {
+static guVector a_uv[] = {
    {.x=0.946482, .y=0.362074, .z=0.000000},
    {.x=0.942437, .y=0.337294, .z=0.000000},
    {.x=0.953348, .y=0.341778, .z=0.000000},
@@ -529,7 +528,7 @@ guVector a_uv[] = {
 
 
 /*ANALOG STICK*/
-guVector astick_points[] = {
+static guVector astick_points[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=0, .z=2},    {.x=4, .y=0, .z=3},
     {.x=5, .y=4, .z=3},    {.x=6, .y=4, .z=5},    {.x=7, .y=4, .z=6},
     {.x=8, .y=7, .z=6},    {.x=9, .y=7, .z=8},    {.x=10, .y=9, .z=8},
@@ -647,7 +646,7 @@ guVector astick_points[] = {
 };
 
 
-guVector astick_normpoints[] = {
+static guVector astick_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=0, .z=2},    {.x=4, .y=0, .z=3},
     {.x=5, .y=4, .z=3},    {.x=6, .y=4, .z=5},    {.x=7, .y=4, .z=6},
     {.x=8, .y=7, .z=6},    {.x=9, .y=7, .z=8},    {.x=10, .y=9, .z=8},
@@ -765,7 +764,7 @@ guVector astick_normpoints[] = {
 };
 
 
-guVector astick_uvpoints[] = {
+static guVector astick_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=0, .z=2},    {.x=4, .y=0, .z=3},
     {.x=5, .y=4, .z=3},    {.x=6, .y=4, .z=5},    {.x=7, .y=4, .z=6},
     {.x=8, .y=7, .z=6},    {.x=9, .y=7, .z=8},    {.x=10, .y=9, .z=8},
@@ -884,7 +883,7 @@ guVector astick_uvpoints[] = {
 
 
 
-guVector astick_vert[] = {
+static guVector astick_vert[] = {
    {.x=14.957032, .y=4.880499, .z=8.742138},
    {.x=15.734776, .y=-0.030006, .z=8.742138},
    {.x=17.044048, .y=-0.030006, .z=3.843784},
@@ -1070,7 +1069,7 @@ guVector astick_vert[] = {
 
 
 
-guVector astick_norm[] = {
+static guVector astick_norm[] = {
    {.x=0.837800, .y=0.266000, .z=0.476700},
    {.x=0.838300, .y=-0.000000, .z=0.545200},
    {.x=0.966100, .y=-0.000000, .z=0.258200},
@@ -1256,7 +1255,7 @@ guVector astick_norm[] = {
 
 
 
-guVector astick_uv[] = {
+static guVector astick_uv[] = {
    {.x=0.800256, .y=0.071979, .z=0.000000},
    {.x=0.805053, .y=0.071979, .z=0.000000},
    {.x=0.813126, .y=0.028130, .z=0.000000},
@@ -1462,7 +1461,7 @@ guVector astick_uv[] = {
 /*ANALOG STICK*/
 
 /*B BUTTON*/
-guVector b_points[] = {
+static guVector b_points[] = {
     {.x=0, .y=1, .z=5},    {.x=2, .y=0, .z=3},    {.x=3, .y=0, .z=4},
     {.x=4, .y=0, .z=5},    {.x=5, .y=6, .z=7},    {.x=5, .y=1, .z=6},
     {.x=8, .y=5, .z=7},    {.x=4, .y=5, .z=8},    {.x=9, .y=3, .z=8},
@@ -1518,7 +1517,7 @@ guVector b_points[] = {
 };
 
 
-guVector b_normpoints[] = {
+static guVector b_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=0, .z=4},    {.x=4, .y=0, .z=5},
     {.x=5, .y=0, .z=2},    {.x=2, .y=6, .z=7},    {.x=2, .y=1, .z=6},
     {.x=8, .y=2, .z=7},    {.x=5, .y=2, .z=8},    {.x=9, .y=4, .z=8},
@@ -1574,7 +1573,7 @@ guVector b_normpoints[] = {
 };
 
 
-guVector b_uvpoints[] = {
+static guVector b_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=0, .z=4},    {.x=4, .y=0, .z=5},
     {.x=5, .y=0, .z=2},    {.x=6, .y=7, .z=8},    {.x=2, .y=1, .z=9},
     {.x=10, .y=6, .z=8},    {.x=11, .y=6, .z=10},    {.x=12, .y=13, .z=10},
@@ -1631,7 +1630,7 @@ guVector b_uvpoints[] = {
 
 
 
-guVector b_vert[] = {
+static guVector b_vert[] = {
    {.x=5.800446, .y=0.045934, .z=11.765378},
    {.x=5.511617, .y=-1.701115, .z=11.765378},
    {.x=5.514498, .y=1.785478, .z=11.765378},
@@ -1725,7 +1724,7 @@ guVector b_vert[] = {
 
 
 
-guVector b_norm[] = {
+static guVector b_norm[] = {
    {.x=0.341600, .y=0.168700, .z=0.924600},
    {.x=0.509900, .y=-0.131400, .z=0.850100},
    {.x=0.944000, .y=-0.155400, .z=0.291100},
@@ -1819,7 +1818,7 @@ guVector b_norm[] = {
 
 
 
-guVector b_uv[] = {
+static guVector b_uv[] = {
    {.x=0.738903, .y=0.297130, .z=0.000000},
    {.x=0.736093, .y=0.279523, .z=0.000000},
    {.x=0.747056, .y=0.281079, .z=0.000000},
@@ -1974,7 +1973,7 @@ guVector b_uv[] = {
 
 
 /*CONTROLLER BODY*/
-guVector bbody_points[] = {
+static guVector bbody_points[] = {
     {.x=2, .y=4, .z=3},    {.x=3, .y=4, .z=7},    {.x=3, .y=6, .z=5},
     {.x=3, .y=7, .z=6},    {.x=4, .y=8, .z=7},    {.x=8, .y=9, .z=7},
     {.x=7, .y=9, .z=10},    {.x=7, .y=10, .z=6},    {.x=6, .y=10, .z=11},
@@ -2590,7 +2589,7 @@ guVector bbody_points[] = {
 };
 
 
-guVector bbody_normpoints[] = {
+static guVector bbody_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=2, .y=1, .z=3},    {.x=2, .y=4, .z=5},
     {.x=2, .y=3, .z=4},    {.x=1, .y=6, .z=3},    {.x=6, .y=7, .z=3},
     {.x=3, .y=7, .z=8},    {.x=3, .y=8, .z=4},    {.x=4, .y=8, .z=9},
@@ -3206,7 +3205,7 @@ guVector bbody_normpoints[] = {
 };
 
 
-guVector bbody_uvpoints[] = {
+static guVector bbody_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=2, .y=1, .z=3},    {.x=2, .y=4, .z=5},
     {.x=2, .y=3, .z=4},    {.x=1, .y=6, .z=3},    {.x=6, .y=7, .z=3},
     {.x=3, .y=7, .z=8},    {.x=3, .y=8, .z=4},    {.x=4, .y=8, .z=9},
@@ -3823,7 +3822,7 @@ guVector bbody_uvpoints[] = {
 
 
 
-guVector bbody_vert[] = {
+static guVector bbody_vert[] = {
    {.x=12.213651, .y=9.017957, .z=32.892498},
    {.x=15.800191, .y=67.464409, .z=32.892502},
    {.x=11.855387, .y=67.827103, .z=16.345530},
@@ -4751,7 +4750,7 @@ guVector bbody_vert[] = {
 
 
 
-guVector bbody_norm[] = {
+static guVector bbody_norm[] = {
    {.x=0.132200, .y=0.991000, .z=-0.020400},
    {.x=0.187100, .y=0.982000, .z=-0.024500},
    {.x=0.098400, .y=0.995100, .z=0.009200},
@@ -5679,7 +5678,7 @@ guVector bbody_norm[] = {
 
 
 
-guVector bbody_uv[] = {
+static guVector bbody_uv[] = {
    {.x=0.526309, .y=0.085091, .z=0.000000},
    {.x=0.539771, .y=0.089926, .z=0.000000},
    {.x=0.523646, .y=0.138502, .z=0.000000},
@@ -6762,7 +6761,7 @@ guVector bbody_uv[] = {
 /*CONTROLLER BODY*/
 
 /*C STICK*/
-guVector cstick_points[] = {
+static guVector cstick_points[] = {
     {.x=3, .y=0, .z=1},    {.x=0, .y=2, .z=1},    {.x=0, .y=5, .z=2},
     {.x=4, .y=0, .z=3},    {.x=4, .y=6, .z=0},    {.x=6, .y=5, .z=0},
     {.x=6, .y=9, .z=5},    {.x=7, .y=6, .z=4},    {.x=8, .y=6, .z=7},
@@ -6866,7 +6865,7 @@ guVector cstick_points[] = {
 };
 
 
-guVector cstick_normpoints[] = {
+static guVector cstick_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=1, .y=3, .z=2},    {.x=1, .y=4, .z=3},
     {.x=5, .y=1, .z=0},    {.x=5, .y=6, .z=1},    {.x=6, .y=4, .z=1},
     {.x=6, .y=7, .z=4},    {.x=8, .y=6, .z=5},    {.x=9, .y=6, .z=8},
@@ -6970,7 +6969,7 @@ guVector cstick_normpoints[] = {
 };
 
 
-guVector cstick_uvpoints[] = {
+static guVector cstick_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=1, .y=3, .z=2},    {.x=1, .y=4, .z=3},
     {.x=5, .y=1, .z=0},    {.x=5, .y=6, .z=1},    {.x=6, .y=4, .z=1},
     {.x=6, .y=7, .z=4},    {.x=8, .y=6, .z=5},    {.x=9, .y=6, .z=8},
@@ -7075,7 +7074,7 @@ guVector cstick_uvpoints[] = {
 
 
 
-guVector cstick_vert[] = {
+static guVector cstick_vert[] = {
    {.x=15.113203, .y=4.911376, .z=8.665014},
    {.x=17.200220, .y=0.000874, .z=3.766665},
    {.x=15.890955, .y=0.000874, .z=8.665014},
@@ -7241,7 +7240,7 @@ guVector cstick_vert[] = {
 
 
 
-guVector cstick_norm[] = {
+static guVector cstick_norm[] = {
    {.x=0.901900, .y=0.346600, .z=0.257900},
    {.x=0.843100, .y=0.261200, .z=0.470100},
    {.x=0.966100, .y=-0.000000, .z=0.258200},
@@ -7407,7 +7406,7 @@ guVector cstick_norm[] = {
 
 
 
-guVector cstick_uv[] = {
+static guVector cstick_uv[] = {
    {.x=0.583916, .y=0.264571, .z=0.000000},
    {.x=0.577672, .y=0.305070, .z=0.000000},
    {.x=0.588137, .y=0.264571, .z=0.000000},
@@ -7593,7 +7592,7 @@ guVector cstick_uv[] = {
 /*C STICK*/
 
 /*DPAD*/
-guVector dpad_points[] = {
+static guVector dpad_points[] = {
     {.x=0, .y=2, .z=1},    {.x=3, .y=2, .z=0},    {.x=4, .y=3, .z=0},
     {.x=5, .y=4, .z=0},    {.x=4, .y=5, .z=6},    {.x=9, .y=7, .z=6},
     {.x=7, .y=8, .z=6},    {.x=8, .y=4, .z=6},    {.x=10, .y=7, .z=9},
@@ -7609,7 +7608,7 @@ guVector dpad_points[] = {
 };
 
 
-guVector dpad_normpoints[] = {
+static guVector dpad_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=1, .z=0},    {.x=4, .y=3, .z=0},
     {.x=5, .y=4, .z=0},    {.x=4, .y=5, .z=5},    {.x=6, .y=7, .z=5},
     {.x=7, .y=8, .z=5},    {.x=8, .y=4, .z=5},    {.x=9, .y=7, .z=6},
@@ -7625,7 +7624,7 @@ guVector dpad_normpoints[] = {
 };
 
 
-guVector dpad_uvpoints[] = {
+static guVector dpad_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=1, .z=0},    {.x=4, .y=5, .z=6},
     {.x=7, .y=4, .z=6},    {.x=8, .y=9, .z=10},    {.x=11, .y=12, .z=13},
     {.x=12, .y=14, .z=13},    {.x=15, .y=8, .z=10},    {.x=16, .y=17, .z=18},
@@ -7642,7 +7641,7 @@ guVector dpad_uvpoints[] = {
 
 
 
-guVector dpad_vert[] = {
+static guVector dpad_vert[] = {
    {.x=3.337595, .y=-11.242876, .z=3.605288},
    {.x=-3.142405, .y=-11.242876, .z=3.525294},
    {.x=-3.142401, .y=-11.202876, .z=13.605291},
@@ -7672,7 +7671,7 @@ guVector dpad_vert[] = {
 
 
 
-guVector dpad_norm[] = {
+static guVector dpad_norm[] = {
    {.x=0.707100, .y=-0.707100, .z=0.002800},
    {.x=-0.440600, .y=-0.785700, .z=0.434100},
    {.x=-0.897000, .y=-0.442000, .z=-0.000300},
@@ -7702,7 +7701,7 @@ guVector dpad_norm[] = {
 
 
 
-guVector dpad_uv[] = {
+static guVector dpad_uv[] = {
    {.x=0.224219, .y=0.030614, .z=0.000000},
    {.x=0.175102, .y=0.107358, .z=0.000000},
    {.x=0.175102, .y=0.030614, .z=0.000000},
@@ -7765,7 +7764,7 @@ guVector dpad_uv[] = {
 /*DPAD*/
 
 /*L TRIGGER*/
-guVector l_points[] = {
+static guVector l_points[] = {
     {.x=0, .y=1, .z=4},    {.x=0, .y=2, .z=1},    {.x=3, .y=0, .z=4},
     {.x=3, .y=4, .z=6},    {.x=4, .y=1, .z=5},    {.x=4, .y=5, .z=7},
     {.x=6, .y=4, .z=7},    {.x=6, .y=7, .z=8},    {.x=8, .y=7, .z=9},
@@ -7819,7 +7818,7 @@ guVector l_points[] = {
 };
 
 
-guVector l_normpoints[] = {
+static guVector l_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=0, .y=3, .z=1},    {.x=4, .y=0, .z=2},
     {.x=4, .y=2, .z=5},    {.x=2, .y=1, .z=6},    {.x=2, .y=6, .z=7},
     {.x=5, .y=2, .z=7},    {.x=5, .y=7, .z=8},    {.x=8, .y=7, .z=9},
@@ -7873,7 +7872,7 @@ guVector l_normpoints[] = {
 };
 
 
-guVector l_uvpoints[] = {
+static guVector l_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=0, .y=3, .z=1},    {.x=4, .y=0, .z=2},
     {.x=4, .y=2, .z=5},    {.x=2, .y=1, .z=6},    {.x=2, .y=6, .z=7},
     {.x=5, .y=2, .z=7},    {.x=5, .y=7, .z=8},    {.x=8, .y=7, .z=9},
@@ -7928,7 +7927,7 @@ guVector l_uvpoints[] = {
 
 
 
-guVector l_vert[] = {
+static guVector l_vert[] = {
    {.x=-17.699188, .y=-17.338251, .z=4.302174},
    {.x=-17.349762, .y=-10.424596, .z=4.186728},
    {.x=-17.774967, .y=-17.444233, .z=8.144610},
@@ -8013,7 +8012,7 @@ guVector l_vert[] = {
 
 
 
-guVector l_norm[] = {
+static guVector l_norm[] = {
    {.x=-0.994300, .y=0.050100, .z=-0.093600},
    {.x=-0.984600, .y=0.154400, .z=-0.081600},
    {.x=-0.984500, .y=0.125600, .z=-0.122200},
@@ -8098,7 +8097,7 @@ guVector l_norm[] = {
 
 
 
-guVector l_uv[] = {
+static guVector l_uv[] = {
    {.x=0.585863, .y=0.580351, .z=0.000000},
    {.x=0.622426, .y=0.579861, .z=0.000000},
    {.x=0.619210, .y=0.559134, .z=0.000000},
@@ -8199,7 +8198,7 @@ guVector l_uv[] = {
 /*L TRIGGER	*/
 
 /*R TRIGGER*/
-guVector r_points[] = {
+static guVector r_points[] = {
     {.x=3, .y=0, .z=1},    {.x=0, .y=2, .z=1},    {.x=3, .y=4, .z=0},
     {.x=7, .y=4, .z=5},    {.x=4, .y=6, .z=5},    {.x=3, .y=6, .z=4},
     {.x=8, .y=7, .z=9},    {.x=7, .y=5, .z=9},    {.x=9, .y=10, .z=11},
@@ -8253,7 +8252,7 @@ guVector r_points[] = {
 };
 
 
-guVector r_normpoints[] = {
+static guVector r_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=1, .y=3, .z=2},    {.x=0, .y=4, .z=1},
     {.x=5, .y=4, .z=6},    {.x=4, .y=7, .z=6},    {.x=0, .y=7, .z=4},
     {.x=8, .y=5, .z=9},    {.x=5, .y=6, .z=9},    {.x=9, .y=10, .z=11},
@@ -8307,7 +8306,7 @@ guVector r_normpoints[] = {
 };
 
 
-guVector r_uvpoints[] = {
+static guVector r_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=1, .y=3, .z=2},    {.x=4, .y=5, .z=6},
     {.x=7, .y=8, .z=9},    {.x=8, .y=10, .z=9},    {.x=4, .y=11, .z=5},
     {.x=12, .y=7, .z=13},    {.x=7, .y=9, .z=13},    {.x=13, .y=14, .z=15},
@@ -8362,7 +8361,7 @@ guVector r_uvpoints[] = {
 
 
 
-guVector r_vert[] = {
+static guVector r_vert[] = {
    {.x=18.134523, .y=-16.542618, .z=8.180969},
    {.x=17.712957, .y=-9.801719, .z=4.126105},
    {.x=18.059385, .y=-16.440844, .z=4.244379},
@@ -8447,7 +8446,7 @@ guVector r_vert[] = {
 
 
 
-guVector r_norm[] = {
+static guVector r_norm[] = {
    {.x=0.737800, .y=-0.006700, .z=0.675000},
    {.x=0.776400, .y=-0.045500, .z=0.628600},
    {.x=0.984700, .y=0.154800, .z=-0.079500},
@@ -8532,7 +8531,7 @@ guVector r_norm[] = {
 
 
 
-guVector r_uv[] = {
+static guVector r_uv[] = {
    {.x=0.629393, .y=0.599345, .z=0.000000},
    {.x=0.590335, .y=0.595395, .z=0.000000},
    {.x=0.627459, .y=0.578623, .z=0.000000},
@@ -8633,7 +8632,7 @@ guVector r_uv[] = {
 /*R TRIGGER*/
 
 /*START BUTTON*/
-guVector start_points[] = {
+static guVector start_points[] = {
     {.x=0, .y=2, .z=1},    {.x=3, .y=2, .z=0},    {.x=4, .y=3, .z=0},
     {.x=5, .y=3, .z=4},    {.x=6, .y=5, .z=4},    {.x=7, .y=5, .z=6},
     {.x=8, .y=7, .z=6},    {.x=9, .y=7, .z=8},    {.x=10, .y=9, .z=8},
@@ -8657,7 +8656,7 @@ guVector start_points[] = {
 };
 
 
-guVector start_normpoints[] = {
+static guVector start_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=1, .z=0},    {.x=4, .y=3, .z=0},
     {.x=5, .y=3, .z=4},    {.x=6, .y=5, .z=4},    {.x=7, .y=5, .z=6},
     {.x=8, .y=7, .z=6},    {.x=9, .y=7, .z=8},    {.x=10, .y=9, .z=8},
@@ -8681,7 +8680,7 @@ guVector start_normpoints[] = {
 };
 
 
-guVector start_uvpoints[] = {
+static guVector start_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=1, .z=0},    {.x=4, .y=3, .z=0},
     {.x=5, .y=3, .z=4},    {.x=6, .y=5, .z=4},    {.x=7, .y=5, .z=6},
     {.x=8, .y=7, .z=6},    {.x=9, .y=7, .z=8},    {.x=10, .y=9, .z=8},
@@ -8706,7 +8705,7 @@ guVector start_uvpoints[] = {
 
 
 
-guVector start_vert[] = {
+static guVector start_vert[] = {
    {.x=3.727288, .y=1.110686, .z=3.719451},
    {.x=3.919101, .y=0.000002, .z=3.719451},
    {.x=3.919103, .y=0.000002, .z=12.337856},
@@ -8751,7 +8750,7 @@ guVector start_vert[] = {
 
 
 
-guVector start_norm[] = {
+static guVector start_norm[] = {
    {.x=0.960300, .y=0.278800, .z=-0.000000},
    {.x=0.998300, .y=0.057500, .z=0.000000},
    {.x=0.998300, .y=-0.057500, .z=0.000000},
@@ -8796,7 +8795,7 @@ guVector start_norm[] = {
 
 
 
-guVector start_uv[] = {
+static guVector start_uv[] = {
    {.x=0.534787, .y=0.619766, .z=0.000000},
    {.x=0.536500, .y=0.608950, .z=0.000000},
    {.x=0.536500, .y=0.608950, .z=0.000000},
@@ -8841,7 +8840,7 @@ guVector start_uv[] = {
 /*START BUTTON*/
 
 /*X BUTTON*/
-guVector x_points[] = {
+static guVector x_points[] = {
     {.x=2, .y=0, .z=6},    {.x=0, .y=3, .z=5},    {.x=0, .y=4, .z=6},
     {.x=0, .y=5, .z=4},    {.x=6, .y=7, .z=8},    {.x=6, .y=4, .z=7},
     {.x=9, .y=6, .z=8},    {.x=2, .y=6, .z=9},    {.x=2, .y=9, .z=10},
@@ -8939,7 +8938,7 @@ guVector x_points[] = {
 };
 
 
-guVector x_normpoints[] = {
+static guVector x_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=1, .y=3, .z=4},    {.x=1, .y=5, .z=2},
     {.x=1, .y=4, .z=5},    {.x=2, .y=6, .z=7},    {.x=2, .y=5, .z=6},
     {.x=8, .y=2, .z=7},    {.x=0, .y=2, .z=8},    {.x=0, .y=8, .z=9},
@@ -9037,7 +9036,7 @@ guVector x_normpoints[] = {
 };
 
 
-guVector x_uvpoints[] = {
+static guVector x_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=1, .y=3, .z=4},    {.x=1, .y=5, .z=2},
     {.x=1, .y=4, .z=5},    {.x=6, .y=7, .z=8},    {.x=6, .y=9, .z=7},
     {.x=10, .y=6, .z=8},    {.x=0, .y=2, .z=11},    {.x=0, .y=11, .z=12},
@@ -9136,7 +9135,7 @@ guVector x_uvpoints[] = {
 
 
 
-guVector x_vert[] = {
+static guVector x_vert[] = {
    {.x=-2.547071, .y=-6.626395, .z=12.294131},
    {.x=-0.712202, .y=-8.910985, .z=12.294131},
    {.x=-1.875943, .y=-8.233051, .z=12.294131},
@@ -9297,7 +9296,7 @@ guVector x_vert[] = {
 
 
 
-guVector x_norm[] = {
+static guVector x_norm[] = {
    {.x=-0.270400, .y=-0.434000, .z=0.859400},
    {.x=-0.449200, .y=-0.032500, .z=0.892800},
    {.x=-0.866000, .y=-0.382600, .z=0.321900},
@@ -9458,7 +9457,7 @@ guVector x_norm[] = {
 
 
 
-guVector x_uv[] = {
+static guVector x_uv[] = {
    {.x=0.517937, .y=0.079289, .z=0.000000},
    {.x=0.516143, .y=0.093764, .z=0.000000},
    {.x=0.505214, .y=0.083555, .z=0.000000},
@@ -9706,7 +9705,7 @@ guVector x_uv[] = {
 /*X BUTTON*/
 
 /*Y BUTTON*/
-guVector y_points[] = {
+static guVector y_points[] = {
     {.x=0, .y=1, .z=3},    {.x=2, .y=0, .z=5},    {.x=4, .y=0, .z=3},
     {.x=5, .y=0, .z=4},    {.x=5, .y=4, .z=7},    {.x=8, .y=5, .z=6},
     {.x=6, .y=5, .z=7},    {.x=8, .y=2, .z=5},    {.x=9, .y=2, .z=8},
@@ -9804,7 +9803,7 @@ guVector y_points[] = {
 };
 
 
-guVector y_normpoints[] = {
+static guVector y_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=0, .z=4},    {.x=5, .y=0, .z=2},
     {.x=4, .y=0, .z=5},    {.x=4, .y=5, .z=6},    {.x=7, .y=4, .z=8},
     {.x=8, .y=4, .z=6},    {.x=7, .y=3, .z=4},    {.x=9, .y=3, .z=7},
@@ -9902,7 +9901,7 @@ guVector y_normpoints[] = {
 };
 
 
-guVector y_uvpoints[] = {
+static guVector y_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=3, .y=0, .z=4},    {.x=5, .y=0, .z=2},
     {.x=4, .y=0, .z=5},    {.x=6, .y=7, .z=8},    {.x=9, .y=6, .z=10},
     {.x=10, .y=6, .z=8},    {.x=11, .y=3, .z=4},    {.x=12, .y=3, .z=11},
@@ -10001,7 +10000,7 @@ guVector y_uvpoints[] = {
 
 
 
-guVector y_vert[] = {
+static guVector y_vert[] = {
    {.x=8.097683, .y=-1.586509, .z=12.294132},
    {.x=6.567050, .y=-2.405817, .z=12.294131},
    {.x=8.670767, .y=-0.319539, .z=12.294132},
@@ -10162,7 +10161,7 @@ guVector y_vert[] = {
 
 
 
-guVector y_norm[] = {
+static guVector y_norm[] = {
    {.x=0.361700, .y=-0.200300, .z=0.910500},
    {.x=0.026700, .y=-0.580300, .z=0.813900},
    {.x=0.433600, .y=-0.854400, .z=0.286300},
@@ -10323,7 +10322,7 @@ guVector y_norm[] = {
 
 
 
-guVector y_uv[] = {
+static guVector y_uv[] = {
    {.x=0.181788, .y=0.410449, .z=0.000000},
    {.x=0.167212, .y=0.405780, .z=0.000000},
    {.x=0.181105, .y=0.397036, .z=0.000000},
@@ -10571,7 +10570,7 @@ guVector y_uv[] = {
 /*Y BUTTON*/
 
 /*Z BUTTON*/
-guVector z_points[] = {
+static guVector z_points[] = {
     {.x=3, .y=0, .z=1},    {.x=0, .y=2, .z=1},    {.x=0, .y=5, .z=2},
     {.x=6, .y=0, .z=3},    {.x=6, .y=4, .z=0},    {.x=4, .y=5, .z=0},
     {.x=6, .y=7, .z=4},    {.x=6, .y=8, .z=7},    {.x=9, .y=8, .z=6},
@@ -10605,7 +10604,7 @@ guVector z_points[] = {
 };
 
 
-guVector z_normpoints[] = {
+static guVector z_normpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=1, .y=3, .z=2},    {.x=1, .y=4, .z=3},
     {.x=5, .y=1, .z=0},    {.x=5, .y=6, .z=1},    {.x=6, .y=4, .z=1},
     {.x=5, .y=7, .z=6},    {.x=5, .y=8, .z=7},    {.x=9, .y=8, .z=5},
@@ -10639,7 +10638,7 @@ guVector z_normpoints[] = {
 };
 
 
-guVector z_uvpoints[] = {
+static guVector z_uvpoints[] = {
     {.x=0, .y=1, .z=2},    {.x=1, .y=3, .z=2},    {.x=1, .y=4, .z=3},
     {.x=5, .y=1, .z=0},    {.x=5, .y=6, .z=1},    {.x=6, .y=4, .z=1},
     {.x=5, .y=7, .z=6},    {.x=5, .y=8, .z=7},    {.x=9, .y=8, .z=5},
@@ -10674,7 +10673,7 @@ guVector z_uvpoints[] = {
 
 
 
-guVector z_vert[] = {
+static guVector z_vert[] = {
    {.x=14.809299, .y=-3.384102, .z=-0.000010},
    {.x=12.486027, .y=-7.623009, .z=-1.700011},
    {.x=13.175175, .y=-7.873840, .z=-0.000010},
@@ -10740,7 +10739,7 @@ guVector z_vert[] = {
 
 
 
-guVector z_norm[] = {
+static guVector z_norm[] = {
    {.x=0.824800, .y=0.361400, .z=-0.434800},
    {.x=0.998400, .y=0.055500, .z=-0.008100},
    {.x=0.771800, .y=-0.280900, .z=-0.570400},
@@ -10806,7 +10805,7 @@ guVector z_norm[] = {
 
 
 
-guVector z_uv[] = {
+static guVector z_uv[] = {
    {.x=0.936793, .y=0.702735, .z=0.000000},
    {.x=0.940380, .y=0.716461, .z=0.000000},
    {.x=0.923678, .y=0.702735, .z=0.000000},
@@ -10870,6 +10869,3 @@ guVector z_uv[] = {
    {.x=0.865528, .y=0.707959, .z=0.000000},
 };
 /*Z BUTTON*/
-
-#endif /*__CONTROLLER_H__*/
-

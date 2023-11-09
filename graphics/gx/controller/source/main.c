@@ -12,7 +12,7 @@
 #include "GC_body_tpl.h"
 
 /*Geometry*/
-#include "controller.h"
+#include "controller.c"
 
 #define DEFAULT_FIFO_SIZE (256*1024)
 
