@@ -10,7 +10,7 @@
 
 static void *xfb = NULL;
 
-static u8 SysArea[CARD_WORKAREA] ATTRIBUTE_ALIGN(32);
+static u8 SysArea[CARD_WORKAREA_SIZE] ATTRIBUTE_ALIGN(32);
 
 u32 first_frame = 1;
 GXRModeObj *rmode;
