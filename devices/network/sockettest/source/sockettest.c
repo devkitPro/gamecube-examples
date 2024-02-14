@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
 							httpd,			/* code */ 
 							localip,		/* arg pointer for thread */
 							NULL,			/* stack base */ 
-							16*1024,		/* stack size */
+							64*1024,		/* stack size */
 							50				/* thread priority */ );
 	} else {
 		printf ("network configuration failed!\n");
